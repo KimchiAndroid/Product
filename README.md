@@ -40,19 +40,19 @@ Git Ignore 파일도 따로 운용할 예정이며,
 
 > 기본적으로 정해진 팀 별 디렉토리명을 제외하고는 공동으로 사용합니다.
 
-- 디렉토리명은 snake_case
+- 디렉토리명은 **snake_case**
     - product_scrap
     - db_process
 
-- 파일명은 기본적으로 (camelCase).(기능 또는 없어도 됨).(확장자)
+- 파일명은 기본적으로 **camelCase**.(기능 또는 없어도 됨).(확장자)
     - productScrap.component.ts
     - mappingToSite.ts
     - request.service.ts
 
-- 변수명은 snake_case
+- 변수명은 **snake_case**
     - `const num_arr : number[] = [1, 2, 3];`
 
-- 함수명은 camelCase
+- 함수명은 **camelCase**
     - `const addOne = (target: number) => target + 1;`
     - `function sqrtArr (arr : number[]) { ... }`
 
@@ -70,8 +70,9 @@ Git Ignore 파일도 따로 운용할 예정이며,
 - 각 팀별로 저장소 관리는 독립적으로 합니다. (중앙 규칙 X, 각 팀별 규칙 O)
 
 - 각 팀별 저장소에서 -> 본 저장소로 pull request 할 경우
-  - Merge 권한은 각 팀장들에게만 부여
-  - 각 팀별 코드 리뷰어는 3개 팀 팀장 및 해당 팀원 전체
-  - 그 중 50% 이상의 인원이 확인하고 승인(approve) 했을 시에 허용
+  - Merge 권한은 각 팀장들에게 있습니다.
+  - 각 팀별 Pull Request 시 **reviewer**는 나머지 2개 팀 팀장 + PM 으로 지정해주세요
+  - 해당 Pull Request에 **assignee** 는 팀 전체를 대상으로 합니다.
+  - reviewer 전원이 확인하고 승인(approve) 했을 시에 Merge 합니다.
   
 > 추가적인 규칙들은 진행 중에 업데이트 하도록 하겠습니다.
