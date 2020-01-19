@@ -1,5 +1,5 @@
 import { ProductListRequest, ProductListResponse } from '../../Common';
-var a000 = require('../../../API/dist/a000/product_list');
+var a000 = require('../../API/dist/a000/product_list');
 
 export const callApp = async (data: ProductListRequest) => {
     try {

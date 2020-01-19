@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // view 경로 설정
-app.use(express.static('../views'));
+app.use(express.static(path.join(__dirname, '../views')));
 
 // router 세팅
 app.use('/', mainRouter);
