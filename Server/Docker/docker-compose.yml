@@ -13,8 +13,9 @@ services:
         #    - db_test
         #    - front_test
         volumes:
-            - ./superdocker/test_api:/home/API
-            - ./superdocker/main_server:/home/super
+            - ./superdocker/API:/home/API
+            - ./superdocker/test_api:/home/test_api
+            - ./superdocker/Main_Server:/home/super
 
         ports:
             - "30200:3000"
@@ -23,12 +24,12 @@ services:
             - /bin/bash
             - -c
             - |
-                cd /home/API/11st
+                cd /home/API
                 npm install && npm run build
-                cd ../joongna
-                npm install && npm run build
-                cd ../../super
-                npm install && npm run build && npm start
+                #cd ../../test_api/joongna
+                #npm install && npm run build
+                cd ../super
+                npm install && npm run dev
 
     db_test:
         image: mysql:5.7
