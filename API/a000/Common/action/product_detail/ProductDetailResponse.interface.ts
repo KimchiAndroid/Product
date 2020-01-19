@@ -1,5 +1,5 @@
 import { SiteCode } from '../../site_code';
-import { ProductDetailTags } from '.';
+import { ProductDetailTags } from '../product_detail';
 
 export interface ProductDetailResponse {
     /** 상품 식별용 Unique 값 */
