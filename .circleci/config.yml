@@ -26,10 +26,10 @@ workflows:
             - build:
                 filters:
                     branches:
-                        only: master
+                        only: s5kywa1k3r_deploy
             - deploy:
                 requires:
                     - build
                 filters:
                     branches:
-                        only: master    
+                        only: s5kywa1k3r_deploy
