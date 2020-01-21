@@ -26,14 +26,8 @@
 #### 현재 필요로 하는 기능들입니다.
 
 -   check_connection: 사이트에 호출을 하였을 때에, 응답을 제대로 하는 지 확인하는 기능
-    -   input : X
-    -   output : `CheckLinkResponse`
 -   product_list: 사이트에 게시할 상품들에 대한 간단한 정보들을 가져옵니다.
-    -   input : `ProductListRequest`
-    -   output : `ProductListResponse`
 -   product_detail: 사이트에서 `id` 값을 받아 해당 상품을 상세하게 조회합니다.
-    -   input : `ProductDetailRequest`
-    -   output : `ProductDetailResponse`
 
 > 필요한 기능들에 대해 유동적으로 늘릴 생각입니다.
 
@@ -49,19 +43,3 @@
 -   A005: 헬로마켓
 
 > 이 후, 개발 예정인 사이트들은 계속 이름에 맞춰 추가될 예정입니다.
-
-<br>
-
-## 개발 단계
-
--   기본적인 구조는 `a000`을 지침으로 개발하시면 됩니다.
--   현재 필요로 하는 기능에 대한 폴더가 있어야 하며 해당 기능별 폴더에는 무조건 있어야 하는 것이 있습니다.
-    1. `src` 폴더: 대부분의 소스 코드가 들어가는 곳입니다.
-    2. `index.ts` 파일: 서버에서 부르는 파일로 입력 값에 따라 Promise<결과 값> 이 나오도록 개발하시면 됩니다.
-    3. `기능명.e2e.ts` 파일: 실제 테스트용 파일로 해당 파일은 전혀 문제 되지 않기 때문에 결과값 확인용으로 사용합니다.
-    4. `test` 폴더: API 팀에서는 절대 오류가 나지 않는다는 전제하에 개발됩니다. 이로 인해 함수별 테스트는 의무적으로 시행합니다.
--   사이트 별 interface는 본인이 개발하는 사이트의 폴더에 `interfaces`라는 이름의 폴더를 생성해 사용합니다.
--   파일 실행을 직접 해보는 방법은 다음과 같습니다.
-    -   콘솔의 위치를 본인의 개발 사이트로 위치합니다. ex) /Product/API/a000 : ~~
-    -   다음의 명령어를 사용합니다. `npm run 기능폴더명/index.ts`
-    -   ex) `npm run product_list/index.ts`
