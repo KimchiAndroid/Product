@@ -13,22 +13,22 @@ services:
         #    - db_test
         #    - front_test
         volumes:
-            - ~/github/API/:/home/API
+            # - ~/github/API/:/home/API
             # - ./superdocker/test_api:/home/test_api
             - ./superdocker/Main_Server:/home/super
 
         ports:
-            - "30200:3000"
+            - "30100:3000"
 
         command:
             - /bin/bash
             - -c
             - |
-                cd /home/API
+                cd /home/super/API
                 npm install && npm run build
                 #cd ../../test_api/joongna
                 #npm install && npm run build
-                cd ../super
+                cd ..
                 npm install && npm run dev
 
     db_test:
