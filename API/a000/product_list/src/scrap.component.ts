@@ -4,6 +4,7 @@ import { APIkey } from '../../option';
 import { SiteResponse, SiteResponseDetail } from '../../interfaces/SiteResponse.interface';
 import { requestService } from './request.service';
 import { responseMapping } from './responseMapping';
+import { SiteRequest } from '../../interfaces/SiteRequest.interface';
 
 export const scrapComponent = async (keyWord: string) => {
     const query_string = makeQuery(keyWord);
@@ -13,11 +14,10 @@ export const scrapComponent = async (keyWord: string) => {
     const product_detail_list: SiteResponseDetail[] =
         product_list.ProductSearchResponse.Products[0].Product;
     const mapping_to_form = product_detail_list.map(responseMapping);
-    console.log(mapping_to_form);
     return mapping_to_form;
 };
 
-export const makeQuery = (keyword: string) => ({
+export const makeQuery = (keyword: string): SiteRequest => ({
     key: APIkey,
     apiCode: 'ProductSearch',
     keyword,

@@ -10,5 +10,5 @@
         "outDir": "./dist",
         "rootDir": "."
     },
-    "exclude": ["node_modules", "test", "dist", "Common", "**/*.e2e.ts"]
+    "exclude": ["node_modules", "**/*.test.ts", "dist", "Common", "**/*.e2e.ts"]
 }
