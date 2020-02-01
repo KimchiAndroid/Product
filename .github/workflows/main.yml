@@ -1,0 +1,64 @@
+name: main.yml
+
+on: 
+  push: # push의 경우에만 실행한다.
+    branches: 
+      - master # master branch에만 발생했을 경우 실행한다.
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Docker에 현 repository에 있는 파일을 복사
+    - name: Checkout a Git repository at a particular version
+      uses: actions/checkout@v2
+      with:
+        repository: s5kywa1k3r/circleCI-Study # default is ${{ github.repository }}
+    
+    # # TSLint check
+    # - name: TSLint checks
+    #   uses: mooyoul/tslint-actions@master
+    #   with:
+    #     # Github Token
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     # Path of TypeScript Project file
+    #     #project: ??
+    #     # Path of TSLint configuration
+    #     config: Test/tslint.json
+    #     # Glob pattern to match
+    #     pattern: '*.ts'
+    
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+      with:
+        # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0, lts
+        #version: # optional, default is 10.x
+        node-version: '12.14.0'
+        # Optional registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN
+        # registry-url: # optional
+        # Optional scope for authenticating against scoped registries
+        # scope: # optional
+    - name: Setup test environment
+      run: |
+          cd Test
+          npm install
+          npm i -D typescript jest @types/jest
+          npm i -D ts-jest
+    - name: Run npm test
+      run: |
+          cd Test
+          npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            whoami
+            ls -al
