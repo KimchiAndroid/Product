@@ -13,9 +13,9 @@ jobs:
     # Docker에 현 repository에 있는 파일을 복사
     - name: Checkout a Git repository at a particular version
       uses: actions/checkout@v2
-      with:
-        repository: s5kywa1k3r/circleCI-Study # default is ${{ github.repository }}
-    
+      # with:
+      #   repository: s5kywa1k3r/circleCI-Study # default is ${{ github.repository }}
+        
     # # TSLint check
     # - name: TSLint checks
     #   uses: mooyoul/tslint-actions@master
