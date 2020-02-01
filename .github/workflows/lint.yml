@@ -6,22 +6,10 @@ on:
       - s5kywa1k3r_deploy # master branch에만 발생했을 경우 실행한다.
 
 jobs:
-  lint_test:
+  eslint:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout a Git repository at a particular version
-      uses: actions/checkout@v2
-      
-    # TSLint check
-    - name: TSLint checks
-      uses: mooyoul/tslint-actions@master
-      with:
-        # Github Token
-        token: ${{ secrets.GITHUB_TOKEN }}
-        # Path of TypeScript Project file
-        project: Test/ 
-        # Path of TSLint configuration
-        config: Test/tslint.json
-        # Glob pattern to match
-        pattern: '*.ts'
+      - uses: actions/checkout@v1
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: src/
