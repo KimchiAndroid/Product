@@ -20,7 +20,7 @@ jobs:
         # Github Token
         token: ${{ secrets.GITHUB_TOKEN }}
         # Path of TypeScript Project file
-        #project: ??
+        project: /
         # Path of TSLint configuration
         config: Test/tslint.json
         # Glob pattern to match
