@@ -35,11 +35,10 @@ const site_code = "000";
 // }
 
 const Products = ({ location, match }) => {
-    const { list_flag } = match.params
-    const query = queryString.parse(location.search)
-    const { id } = query
+    const { list_flag, id } = match.params
+    // const query = queryString.parse(location.search)
+    // const { id } = query
     const childComponent = getChildComponent(list_flag, id)
-    console.log(id)
     return (
         <div className="App" >
             <Header container="search-bar-container">
@@ -63,6 +62,7 @@ const getChildComponent = (list_flag, id) => {
 }
 
 const products = (site_code) => {
+    console.log(site_code)
     return (
         <ProductsContainer>
             <SiteTitle site_code={site_code}></SiteTitle>

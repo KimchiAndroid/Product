@@ -11,15 +11,13 @@ class SearchBar extends Component {
     }
 
     inputKeyword = (e) => {
-        const keyword = e.target.value
         this.setState({
-            keyword
+            keyword: e.target.value
         });
     }
     handleKeyPress(e) {
-        const { keyword } = this.state;
-        if (e.charCode == 13) {
-            navigate(`/search/${keyword}`);
+        if (e.charCode === 13) {
+            navigate(`/search/${e.target.value}`)
         }
     }
     render() {
@@ -29,7 +27,7 @@ class SearchBar extends Component {
                     <SiteIcon site_code="" />
                 </Link>
                 <div className="search-bar">
-                    <input type="text" id="keyword" className="search-bar-input" placeholder="원하시는 상품을 입력하세요." onChange={this.inputKeyword} onKeyPress={this.handleKeyPress} />
+                    <input type="text" className="search-bar-input" placeholder="원하시는 상품을 입력하세요." onChange={this.inputKeyword} onKeyPress={this.handleKeyPress} />
                     <Link to={`/search/${this.state.keyword}`}>
                         <img src={Search} alt="" className="search-icon" />
                     </Link>
