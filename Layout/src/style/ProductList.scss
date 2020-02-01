@@ -25,16 +25,21 @@
     }
   }
   .product-list {
+    display:flex;
     .product-list-prev {
+      width:100px;
+      background:white;
     }
     .product-list-next {
     }
     .product-list-items {
+      flex:1;
       display: block;
       overflow-x: scroll;
       overflow-y: hidden;
       word-wrap: normal;
       white-space: nowrap;
+      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       background-color: cornsilk;
       position: relative;
