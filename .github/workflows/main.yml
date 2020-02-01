@@ -3,7 +3,7 @@ name: main.yml
 on: 
   push: # push의 경우에만 실행한다.
     branches: 
-      - master # master branch에만 발생했을 경우 실행한다.
+      - s5kywa1k3r_deploy # master branch에만 발생했을 경우 실행한다.
 
 jobs:
   build_and_test:
