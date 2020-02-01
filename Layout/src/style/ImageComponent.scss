@@ -1,0 +1,44 @@
+.productDetailImage{
+    width: 250px;
+    height: 200px;
+}
+
+.icon{
+    content: "";
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.Icon11st{
+    background-image: url('../static/11st.png');
+}
+
+.IconBeongae{
+    background-image: url('../static/beongaeMarket.png');
+}
+
+.IconJoonggo{
+    background-image: url('../static/joonggonara.png');
+}
+
+.IconDanggeun{
+    background-image: url('../static/danggeunMarket.png');
+}
+
+
+.IconSellit{
+    background-image: url('../static/sellit.png');
+}
+
+.IconHelloMarket{
+    background-image: url('../static/helloMarket.jpg');
+}
+
+.IconKonkuk{
+    background-image: url('../static/konkuk.jpg');
+}
