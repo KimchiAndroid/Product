@@ -26,7 +26,7 @@ class SiteProductList extends Component {
         this.setState({ res: [...this.state.res, ...res.data] })
     }
     handleRequestScroll = () => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight * 0.6) {
             this.getProducts()
         }
     }
