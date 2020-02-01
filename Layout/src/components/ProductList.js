@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 class ProductList extends Component {
   constructor(props){
     super(props);
-    this.ref = React.createRef();
+    this.itemsRef = React.createRef();
   }
     render() {
         const { 
@@ -26,18 +26,19 @@ class ProductList extends Component {
             const { target } = event;
             const { scrollLeft, scrollWidth, clientWidth } = target;
             console.log(scrollLeft, scrollWidth - clientWidth);
-            if (scrollLeft > scrollWidth - clientWidth - 2000) {
-                debounce(() => {
-                    console.log('추가');
-                }, 1000);
+            if (scrollLeft > (scrollWidth - clientWidth)*0.9) { // 90% scroll 됐을 때 ajax action
+                // debounce(() => {
+                //     console.log('추가');
+                // }, 1000);
+                console.log('action')
             }
         };
         const actionPrev = (event) => {
-          const target = this.ref.current;
+          const target = this.itemsRef.current;
           target.scrollLeft -= target.clientWidth;
         }
         const actionNext = (event) => {
-          const target = this.ref.current;
+          const target = this.itemsRef.current;
           target.scrollLeft += target.clientWidth;
           
         }
@@ -46,7 +47,7 @@ class ProductList extends Component {
                 <h1 className="product-sitename">{siteName}</h1>
                 <div className="product-list">
                     <div className="product-list-prev" onClick={actionPrev}></div>
-                    <div className="product-list-items" onScroll={scrollHandler} ref={this.ref}>
+                    <div className="product-list-items" onScroll={scrollHandler} ref={this.itemsRef}>
                         <ReactList
                             axis="x"
                             itemRenderer={renderItem}

@@ -29,8 +29,12 @@
     .product-list-prev {
       width:100px;
       background:white;
+      cursor: pointer;
     }
     .product-list-next {
+      width:100px;
+      background-color: yellowgreen;
+      cursor: pointer;
     }
     .product-list-items {
       flex:1;
