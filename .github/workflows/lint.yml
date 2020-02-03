@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: cp Server/Docker/superdocker/Main_Server/package.json .
       - uses: stefanoeb/eslint-action@1.0.2
         with:
           files: Server/Docker/superdocker/Main_Server
