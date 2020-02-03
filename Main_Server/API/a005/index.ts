@@ -1,4 +1,4 @@
-import request from 'request-promise';
+import * as request from 'request-promise';
 import { SiteResponseDetail } from './interfaces/SiteResponse.interface';
 
 const hello = async (q: string, page: number = 1) => {

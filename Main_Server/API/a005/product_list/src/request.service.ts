@@ -1,4 +1,4 @@
-import request from 'request-promise';
+import * as request from 'request-promise';
 import { APIsite } from '../../option';
 
 export const requestService = async (q: string, page: number) => {

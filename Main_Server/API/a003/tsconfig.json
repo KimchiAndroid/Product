@@ -1,18 +1,6 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
-        "moduleResolution": "node",
-        "declaration": false,
-        "noImplicitAny": true,
-        "removeComments": true,
-        "noLib": false,
-        "target": "ES5",
-        "sourceMap": false,
-        "allowJs": true,
-        "lib": ["esnext", "dom"],
-        "outDir": "./dist",
-        "rootDir": "."
-    },
-    "include": ["answer/*"],
-    "exclude": ["node_modules"]
+        "outDir": "../dist"
+    }
 }
