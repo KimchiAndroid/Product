@@ -2,11 +2,6 @@ import React, { Component } from "react"
 import cx from "classnames"
 import "../../style/ImageComponent.scss"
 class SiteIcon extends Component {
-    constructor(props) {
-        super(props)
-        const { site_code } = this.props
-        this.siteIcon = this.selectSiteIcon(site_code)
-    }
     selectSiteIcon = (site_code) => {
         switch (site_code) {
             case "000":
@@ -26,9 +21,11 @@ class SiteIcon extends Component {
         }
     }
     render() {
+        const { site_code } = this.props
+        const siteIcon = this.selectSiteIcon(site_code)
         return (
             <>
-                <img className={cx("icon", this.siteIcon)} alt="" />
+                <img className={cx("icon", siteIcon)} alt="" />
             </>
         )
     }
