@@ -14,15 +14,15 @@ class ProductDetail extends Component {
         this.getProducts()
     }
     getProducts = async () => {
-        const productDetailUrl = `http://127.0.0.1:3002/Product/Detail/${this.props.productID}`
+        const productDetailUrl = `http://127.0.0.1:3002/Product/${this.props.productID}`
         const res = await axios.get(productDetailUrl)
         this.setState({ res: res.data })
     }
     render() {
         return (
-            <>
+            <div className="product-detail-container">
                 <ProductContents data={this.state.res} />
-            </>
+            </div>
         )
     }
 }

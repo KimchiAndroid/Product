@@ -94,5 +94,4 @@ class ProductList extends Component {
         );
     }
 }
-
 export default ProductList;

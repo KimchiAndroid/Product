@@ -6,7 +6,7 @@ class ProductListItem extends Component {
   render() {
     const { productImage, productName, productPrice, productID } = this.props;
     return (
-      <Link to={`/Product/${productID}`}>
+      <Link to={`/product/?id=${productID}`}>
         <div className="product-list-item">
           <div className="product-image">
             <img src={productImage || productDefaultImage} alt="" />
