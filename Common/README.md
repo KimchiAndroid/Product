@@ -26,3 +26,4 @@
     -   Product List Response, Product Detail Response 프론트 요구사항 반영
     -   Site Code 추가: 11번가 테스트 전용
     -   Check Linke Response 추가
+    -   id 값 String 타입으로 변경
