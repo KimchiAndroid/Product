@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     # Run only on non-merged non-draft mergeable pull requests    
     if: |
-      !github.event.pull_request.merged && 
+      github.event.pull_request.merged && 
       github.event.pull_request.merge_commit_sha != null
       
       
     steps:
       - name: Checkout a Git repository at a particular version
         uses: actions/checkout@v2
-        with:
+         with:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
       
       - name: Test
