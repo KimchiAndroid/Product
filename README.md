@@ -10,7 +10,7 @@
 
 ## 기본적으로 각 팀 디렉토리는 따로 존재합니다.
 
-- API : Back-end API 팀
+- Main_Server : Back-end API 팀
 - Server: Server & DB 팀
 - Layout: Front-end 팀
 
