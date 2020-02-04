@@ -19,8 +19,8 @@ app.use('/', mainRouter);
 app.use('/check', checkRouter, express.static(path.join(__dirname, '../views/check')));
 app.use('/product', cors(), productRouter);
 
-// 3000 포트 개방
-app.listen(3000);
+// 3002 포트 개방
+app.listen(3002);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
