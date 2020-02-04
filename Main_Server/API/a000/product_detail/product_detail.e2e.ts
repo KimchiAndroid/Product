@@ -1,7 +1,7 @@
 import { index } from '.';
 
-index({ search_word: '모니터' })
-    .then(value => console.log(value))
+index({ id: '2103167376' })
+    .then(value => console.dir(value, { depth: null }))
     .catch(err => {
         throw new Error(err);
     })
