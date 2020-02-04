@@ -1,4 +1,4 @@
-name: Deploy
+name: Front Deployment
 
 on:
   pull_request:
@@ -6,15 +6,16 @@ on:
       - closed
     branches:
       - s5kywa1k3r_deploy
+    paths:
+      - 'Layout/**'
 
 jobs:
-  Deployment:
+  Front_Deployment:
     runs-on: ubuntu-latest
-    # Run only on non-merged non-draft mergeable pull requests    
+    # Run only on merged pull requests
     if: |
       github.event.pull_request.merged && 
       github.event.pull_request.merge_commit_sha != null
-      
       
     steps:
       - name: Checkout a Git repository at a particular version
@@ -26,4 +27,4 @@ jobs:
         run: |
           ls -al
           pwd
-          echo hello merged i will deploy!
+          echo Hello! Front_Deployment.yml!
