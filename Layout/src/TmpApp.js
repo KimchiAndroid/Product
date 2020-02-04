@@ -9,6 +9,8 @@ import WordCloud from "./static/wordcloud.png"
 import SiteTitle from "./components/utils/SiteTitle"
 
 import { SectionsContainer, Section } from "react-fullpage"
+import BoardList from "./components/BoardList"
+import ProductList from "./components/ProductList"
 import queryString from "query-string"
 
 import {
@@ -16,8 +18,6 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-
-const site_code = "000";
 
 // const Home = () => {
 //     return (
@@ -35,34 +35,35 @@ const site_code = "000";
 // }
 
 const Products = ({ location, match }) => {
-    const { list_flag, id } = match.params
-    // const query = queryString.parse(location.search)
-    // const { id } = query
-    const childComponent = getChildComponent(list_flag, id)
+    const { list_flag } = match.params
+    const query = queryString.parse(location.search)
+    const { id, keyword, site_code } = query
+    const childComponent = getChildComponent(list_flag, id, keyword, site_code)
     return (
         <div className="App" >
             <Header container="search-bar-container">
                 <SearchBar />
             </Header>
+            <BoardList site_code={id}></BoardList>
             {childComponent}
         </div >
     )
 }
-const getChildComponent = (list_flag, id) => {
+const getChildComponent = (list_flag, id, keyword, site_code) => {
+    console.log(site_code)
     switch (list_flag) {
         case "products":
-            return products(id)
+            return products(site_code)
         case "product":
             return productDetail(id)
         case "search":
-            return ""
+            return productList(keyword)
         default:
             return ""
     }
 }
 
 const products = (site_code) => {
-    console.log(site_code)
     return (
         <ProductsContainer>
             <SiteTitle site_code={site_code}></SiteTitle>
@@ -76,13 +77,85 @@ const productDetail = (productID) => {
     )
 }
 
+const productList = (keyword) => {
+    // return <ProductList keyword={keyword} />
+    const siteInfo = { siteID: 'AA', siteName: '11번가' };
+    const productItems = [
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+        {
+            productImage: '',
+            productName: '아이폰 팝니다',
+            productPrice: '110000',
+        },
+    ];
+    return (
+        <ProductsContainer>
+            <ProductList siteInfo={siteInfo} productItems={productItems} />
+        </ProductsContainer>
+    )
+
+}
+
 class TmpApp extends Component {
     render() {
         return (
             <Router>
                 <Switch>
-                    {/* <Route path="/:list_flag/" component={Products} /> */}
-                    <Route path="/:list_flag/:id" component={Products} />
+                    <Route path="/:list_flag" component={Products} />
                     <Route exact path="/" component={Home} />
                 </Switch>
             </Router>
@@ -107,9 +180,9 @@ const Home = () => {
                     </Header>
                 </Section>
                 <Section>
-                    <ProductsContainer id="recentProducts">
+                    <ProductsContainer main_flag={true}>
                         <h1>최근에 등록한 매물</h1>
-                        <SiteProductList site_code={site_code} main_flag={true}></SiteProductList>
+                        <SiteProductList main_flag={true}></SiteProductList>
                     </ProductsContainer>
                 </Section>
             </div>
