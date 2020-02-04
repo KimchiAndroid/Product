@@ -2,18 +2,29 @@ name: Deploy
 
 on:
   pull_request:
-    types:
-      - merged
     branches:
       - s5kywa1k3r_deploy
 
 jobs:
   Deployment:
     runs-on: ubuntu-latest
-    
+    # Run only on non-merged non-draft mergeable pull requests    
+    if: |
+      !(
+        (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize')
+        && !github.event.pull_request.draft
+        && !github.event.pull_request.merged
+        && github.event.pull_request.merge_commit_sha != null
+      )
+      
     steps:
       - name: Checkout a Git repository at a particular version
         uses: actions/checkout@v2
+         with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
       
-      - name: Will be added a deployment script
-        run: echo HELLO GITHUB ACTION
+      - name: Test
+        run: |
+          ls -al
+          pwd
+          echo hello merged i will deploy!
