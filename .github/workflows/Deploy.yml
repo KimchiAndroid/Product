@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - s5kywa1k3r_deploy
+
+jobs:
+  Deployment:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout a Git repository at a particular version
+        uses: actions/checkout@v2
+      
+      - name: Will be added a deployment script
+        run: echo HELLO GITHUB ACTION
