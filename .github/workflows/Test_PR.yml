@@ -26,6 +26,7 @@ jobs:
           
       - name: Run ESLint
         run: |
+          cd Main_Server/API
           npm ci
           npm run lint
         env:
