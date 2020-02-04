@@ -6,7 +6,7 @@ on:
       - s5kywa1k3r_deploy
       
 jobs:
-  ESLint Check:
+  ESLint_Check:
     runs-on: ubuntu-latest
     
     steps:
@@ -31,7 +31,7 @@ jobs:
         env:
           CI: true
       
-  Unit Test:
+  Unit_Test:
     runs-on: ubuntu-latest
     
     steps:
