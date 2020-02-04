@@ -1,0 +1,30 @@
+name: Back Deployment
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - s5kywa1k3r_deploy
+    paths:
+      - Main_Server
+
+jobs:
+  Front_Deployment:
+    runs-on: ubuntu-latest
+    # Run only on merged pull requests
+    if: |
+      github.event.pull_request.merged && 
+      github.event.pull_request.merge_commit_sha != null
+      
+    steps:
+      - name: Checkout a Git repository at a particular version
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+      
+      - name: Test
+        run: |
+          ls -al
+          pwd
+          echo Hello! Back_Deployment.yml!
