@@ -7,7 +7,7 @@ on:
     branches:
       - s5kywa1k3r_deploy
     paths:
-      - Layout
+      - 'Layout/**'
 
 jobs:
   Front_Deployment:

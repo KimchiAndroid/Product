@@ -7,7 +7,7 @@ on:
     branches:
       - s5kywa1k3r_deploy
     paths:
-      - Main_Server
+      - 'Main_Server/**'
 
 jobs:
   Front_Deployment:
