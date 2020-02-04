@@ -1,0 +1,24 @@
+.site-product-list{
+  .product-list-container{
+    display: grid;
+    grid-template-columns: repeat(4, calc(25%));
+    .product-list-item {
+        margin: 10px;
+        border: 1px solid #efefe1;
+        border-radius: 3px;
+        &:hover {
+          transition: linear 0.15s;
+          transform: scale(1.03);
+        }
+        .product-image {
+          img {
+            width: 100%;
+          }
+        }
+        .product-name {
+        }
+        .product-price {
+        }
+    }
+  }
+}

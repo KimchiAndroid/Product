@@ -1,0 +1,66 @@
+name: Check & Test PR
+
+on:
+  pull_request:
+    branches:
+      - s5kywa1k3r_deploy
+      
+jobs:
+  ESLint Check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout a Git repository at at particular version
+        uses: actions/checkout@v2
+        
+      - name: Use a Nodejs version 12.14.0
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: '12.14.0'
+          
+      # Below code is for checking folder. You must be disable this code when you deploy this code.
+      - name: Check unit test environment
+        run: |
+          pwd
+          ls -al
+          
+      - name: Run ESLint
+        run: |
+          npm ci
+          npm run lint
+        env:
+          CI: true
+      
+  Unit Test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout a Git repository at a particular version
+        uses: actions/checkout@v2
+        
+      - name: Setup Node.js for use with actions
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: '12.14.0'
+      
+      # Below code is for checking folder. You must be disable this code when you deploy this code.
+      - name: Check unit test environment
+        run: |
+          pwd
+          ls -al          
+      
+      - name: Setup unit test environment
+        run: |
+          cd Main_Server/API
+          npm install
+      
+      - name: Run unit test
+        run: |
+          pwd
+          ls -al
+          cd Main_Server/API
+          npm run test
+          
+  
+          
+    
