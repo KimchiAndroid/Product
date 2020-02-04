@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout a Git repository at a particular version
         uses: actions/checkout@v2
-         with:
+        with:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
       
       - name: Test
