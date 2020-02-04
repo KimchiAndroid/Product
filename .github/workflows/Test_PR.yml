@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - s5kywa1k3r_deploy
+    paths:
+      - Main_Server
       
 jobs:
   ESLint_Check:
