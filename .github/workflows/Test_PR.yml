@@ -52,8 +52,8 @@ jobs:
       
       - name: Setup unit test environment
         run: |
-          cd Main_Server/API
-          npm install
+          cd Main_Server && npm install
+          cd API && npm install
       
       - name: Run unit test
         run: |
