@@ -6,7 +6,7 @@ on:
       - s5kywa1k3r_deploy
       
 jobs:
-  ESLint Check:
+  ESLint_Check:
     runs-on: ubuntu-latest
     
     steps:
@@ -26,12 +26,13 @@ jobs:
           
       - name: Run ESLint
         run: |
+          cd Main_Server/API
           npm ci
           npm run lint
         env:
           CI: true
       
-  Unit Test:
+  Unit_Test:
     runs-on: ubuntu-latest
     
     steps:
@@ -51,8 +52,8 @@ jobs:
       
       - name: Setup unit test environment
         run: |
-          cd Main_Server/API
-          npm install
+          cd Main_Server && npm install
+          cd API && npm install
       
       - name: Run unit test
         run: |
