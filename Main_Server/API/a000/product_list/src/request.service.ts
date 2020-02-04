@@ -1,6 +1,6 @@
 import * as rp from 'request-promise';
-import { APISite } from '../../option';
+import { originSite } from '../../option';
 
 export const requestService = async (qs: any) => {
-    return rp.get({ url: APISite, qs, json: true, encoding: null });
+    return rp.get({ url: originSite, qs, json: true, encoding: null });
 };
