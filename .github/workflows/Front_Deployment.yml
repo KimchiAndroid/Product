@@ -28,3 +28,14 @@ jobs:
           ls -al
           pwd
           echo Hello! Front_Deployment.yml!
+          
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            ls -al
+            pwd
+            echo SSH Hello! Front_Deployment.yml!
