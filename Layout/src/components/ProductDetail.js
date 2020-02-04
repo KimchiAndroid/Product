@@ -20,9 +20,9 @@ class ProductDetail extends Component {
     }
     render() {
         return (
-            <>
+            <div className="product-detail-container">
                 <ProductContents data={this.state.res} />
-            </>
+            </div>
         )
     }
 }
