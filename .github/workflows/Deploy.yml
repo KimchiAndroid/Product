@@ -3,7 +3,7 @@ name: Deploy
 on:
   pull_request:
     types:
-      - closed
+      - merged
     branches:
       - s5kywa1k3r_deploy
 
