@@ -15,10 +15,10 @@ services:
         volumes:
             # - ~/github/API/:/home/API
             # - ./superdocker/test_api:/home/test_api
-            - ./superdocker/Main_Server:/home/super
-
+            # - ./superdocker/Main_Server:/home/super
+	    - ~/Product/Main_Server:/home/super
         ports:
-            - "30100:3000"
+            - "30100:3002"
 
         command:
             - /bin/bash
