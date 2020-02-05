@@ -18,17 +18,6 @@ jobs:
       github.event.pull_request.merge_commit_sha != null
       
     steps:
-      - name: Checkout a Git repository at a particular version
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
-      
-      - name: Test
-        run: |
-          ls -al
-          pwd
-          echo Hello! Front_Deployment.yml!
-          
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -36,6 +25,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            ls -al
-            pwd
-            echo SSH Hello! Front_Deployment.yml!
+            cd ~/Test_Product
+            git pull origin master
+            
+            cd Server/Docker
+            docker-compose up -d front
+            
