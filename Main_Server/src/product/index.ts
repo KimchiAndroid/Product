@@ -17,7 +17,13 @@ productRouter.get('/search', async (req: Request, res: Response, next: NextFunct
     if (!req.query.title || typeof req.query.title !== 'string') {
         return res.send('Error!! There is no Query String');
     }
-    const result = await callApp({ search_word: req.query.title })('005');
+
+    let site_code = null;
+    if (req.query.site) {
+        site_code = req.query.site;
+    }
+    const result = await Promise.all(callApp({ search_word: req.query.title })(site_code));
+
     // const db_result: Array<Object> = await getData(req.query.title); // title에 keyword 정보 있는 모든 행들 추출 -> Array<Object> 형태
     // for (var i = 0; i < db_result.length; i++) {
     //     //현 상태로는 6번 돌아야함. sitecode 총 6개이기 때문, site별 object로 array에 들어가있음.
