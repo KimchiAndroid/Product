@@ -25,7 +25,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
+            cd ~/Test_Product
             git pull origin master
             
-            cd ~/Product/Server/Docker
+            cd Server/Docker
             docker-compose up -d super
