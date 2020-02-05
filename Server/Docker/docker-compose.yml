@@ -65,16 +65,27 @@ services:
         image: super:stable
 
         volumes:
-            - ./superdocker/API/ExpressJS-Study:/home/api
+            - ~/Test_Product/Main_Server:/home/Main_Server
         ports:
-            - "30001:3000"
+            - "30001:3002"
         command:
             - /bin/bash
             - -c
             - |
-                cd /home/api/API/11st
+                cd /home/Main_Server
                 npm install && npm run build
-                cd ../joongna
-                npm install && npm run build
-                cd ../../express-for-typescript
-                npm install && npm run build && npm start
+                npm run copy-view && npm start
+    front:
+        build: ./frontdocker
+        image: front:stable
+
+        volumes:
+            - ~/Test_Product/Layout:/home/Layout
+        ports:
+            - "30000:3000"
+        command:
+            - /bin/bash
+            - -c
+            - |
+                cd /home/Layout
+                npm install && npm start
