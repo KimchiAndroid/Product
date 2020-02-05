@@ -1,13 +1,11 @@
-const key_list = ['db', 'a000', 'a001', 'a002', 'a003', 'a004', 'a005'];
+const key_list = ['all', '000', '001', '002', '003', '004', '005'];
 $(document).ready(() => {
-    key_list.map(key =>
-        $(`#${key}_button`).on('click', e => {
-            checkServer(key);
-        }),
-    );
+    key_list.map(key => {
+        $('');
+    });
 });
 
-const checkServer = key => {
+const getDate = site_code => {
     $.ajax({
         url: key,
         success: res => {

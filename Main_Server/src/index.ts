@@ -1,7 +1,8 @@
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
-import createError from 'http-errors';
+import bodyParser = require('body-parser');
+import cors = require('cors');
+import express = require('express');
+import { NextFunction, Request, Response } from 'express';
+import createError = require('http-errors');
 import { join } from 'path';
 import checkRouter from './check';
 import productRouter from './product';
