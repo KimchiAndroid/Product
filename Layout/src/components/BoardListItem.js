@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import cx from 'classname'
+import cx from "classnames"
+
 class BoardListItem extends Component {
     render() {
-        const { boardName, boardNo } =  this.props;
-        const { clicked } = this.props;
-        const selected = clicked === boardNo ? true : false
+        const { boardName, boardNo } = this.props;
+        const { site_code } = this.props;
+        const selected = site_code === boardNo ? true : false
         return (
-            <div className={cx("board-list-item", {selected})}>
-                <a href={`#${boardNo}`} onClick = {() => this.props.linkOnClicked(boardNo) }>
+            <div className={cx("board-list-item", { selected })}>
+                <a href={`/products/?site_code=${boardNo}`}>
                     {boardName}
                 </a>
             </div>
