@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - master
+      - s5kywa1k3r_docker
     paths:
       - 'Layout/**'
 
@@ -21,9 +21,9 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.TEST_HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
+          key: ${{ secrets.TEST_KEY }}
           script: |
             cd ~/Product
             git pull origin master
