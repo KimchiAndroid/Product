@@ -30,4 +30,3 @@ jobs:
             
             cd Server/Docker
             docker-compose up -d front
-            
