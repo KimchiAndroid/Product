@@ -10,12 +10,8 @@ services:
         image: super:test
 
         #depends_on:
-        #    - db_test
         #    - front_test
         volumes:
-            # - ~/github/API/:/home/API
-            # - ./superdocker/test_api:/home/test_api
-            # - ./superdocker/Main_Server:/home/super
             - ~/Product/Main_Server:/home/Main_Server
         ports:
             - "30100:3002"
@@ -32,11 +28,6 @@ services:
                 #cd ..
                 #npm install && npm run dev
 
-    db_test:
-        image: mysql:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=secure
-
     front_test:
         build: ./frontdocker
         image: front:test2
@@ -52,7 +43,6 @@ services:
             - /bin/bash
             - -c
             - |
-                pwd
                 cd /home/Layout
                 npm install && npm start
                 
