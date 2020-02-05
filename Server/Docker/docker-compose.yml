@@ -7,27 +7,29 @@ services:
     ################
     super_test:
         build: ./superdocker
-        image: super:master
+        image: super:test
 
-        depends_on:
-            - db_test
-            - front_test
+        #depends_on:
+        #    - db_test
+        #    - front_test
         volumes:
-            - ./superdocker/test/ExpressJS-Study:/home/api
+            # - ~/github/API/:/home/API
+            # - ./superdocker/test_api:/home/test_api
+            - ./superdocker/Main_Server:/home/super
 
         ports:
-            - "30200:3000"
+            - "30100:3000"
 
         command:
             - /bin/bash
             - -c
             - |
-                cd /home/api/API/11st
+                cd /home/super/API
                 npm install && npm run build
-                cd ../joongna
-                npm install && npm run build
-                cd ../../express-for-typescript
-                npm install && npm run build && npm start
+                #cd ../../test_api/joongna
+                #npm install && npm run build
+                cd ..
+                npm install && npm run dev
 
     db_test:
         image: mysql:5.7
@@ -37,6 +39,7 @@ services:
     front_test:
         build: ./frontdocker
         image: front:test
+                #service nginx reload
 
         #volumes:
         #    - ./frontdocker/biccon.github.io:/home/front
@@ -55,12 +58,12 @@ services:
     ##################
     ##### STABLE #####
     ##################
-    api:
-        build: ./apidocker
-        image: api:master
+    super:
+        build: ./superdocker
+        image: super:stable
 
         volumes:
-            - ./apidocker/master/ExpressJS-Study:/home/api
+            - ./superdocker/API/ExpressJS-Study:/home/api
         ports:
             - "30001:3000"
         command:
