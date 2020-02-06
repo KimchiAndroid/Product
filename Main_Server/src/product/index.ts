@@ -62,7 +62,6 @@ productRouter.get('/detail', async (req: Request, res: Response, next: NextFunct
         const result = await Promise.all(
             productDetailAPI({ id: req.query.id, site_code: req.query.site_code }),
         );
-
         return res.status(200).json(result);
     } catch (err) {
         throw new Error(err);
