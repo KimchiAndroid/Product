@@ -1,6 +1,6 @@
 ## 현재 버전
 
--   version : 1.2.0
+-   version : 1.2.1
 -   author: IMRaccoon
 
 <br>
@@ -28,4 +28,5 @@
     -   Check Linke Response 추가
     -   id 값 String 타입으로 변경
 -   v.1.2.0
-    -   Product Detail request site_code 추가
+    -   Product Detail Request site_code 필드 추가
+    -   Product List Request page 필드 추가
