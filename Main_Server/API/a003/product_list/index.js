@@ -1,4 +1,4 @@
-import { scrapSite } from './src/SearchProduct';
+import { scrapSite } from './product_list/src/SearchProductList';
 
 scrapSite('노트북')
     .then(value => console.log(value))
