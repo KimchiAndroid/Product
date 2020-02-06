@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import TmpApp from './TmpApp'
-class App extends Component {
-  render() {
-    return (
-      <TmpApp />
-    );
-  }
+import React from 'react';
+import MainRouter from './router';
+
+function App() {
+    return <MainRouter />;
 }
 
 export default App;
