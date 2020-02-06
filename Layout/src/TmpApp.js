@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-import ProductDetail from "./components/ProductDetail"
-import SiteProductList from "./components/SiteProductList"
-import SearchBar from "./components/SearchBar"
-import ProductsContainer from "./components/ProductsContainer"
+import ProductDetail from './components/ProductDetail';
+import SiteProductList from './components/SiteProductList';
+import SearchBar from './components/SearchBar';
+import ProductsContainer from './components/ProductsContainer';
 
-import Header from "./components/Header"
-import WordCloud from "./static/wordcloud.png"
-import SiteTitle from "./components/utils/SiteTitle"
+import Header from './components/Header';
+import WordCloud from './static/wordcloud.png';
+import SiteTitle from './components/utils/SiteTitle';
 
-import { SectionsContainer, Section } from "react-fullpage"
-import BoardList from "./components/BoardList"
-import ProductList from "./components/ProductList"
-import queryString from "query-string"
+import { SectionsContainer, Section } from 'react-fullpage';
+import BoardList from './components/BoardList';
+import ProductList from './components/ProductList';
+import queryString from 'query-string';
+import axios from 'axios';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // const Home = () => {
 //     return (
@@ -34,166 +31,115 @@ import {
 //     );
 // }
 
-const Products = ({ location, match }) => {
-    const { list_flag } = match.params
-    const query = queryString.parse(location.search)
-    const { id, keyword, site_code } = query
-    const childComponent = getChildComponent(list_flag, id, keyword, site_code)
-    return (
-        <div className="App" >
-            <Header container="search-bar-container">
-                <SearchBar />
-            </Header>
-            <BoardList site_code={id}></BoardList>
-            {childComponent}
-        </div >
-    )
-}
-const getChildComponent = (list_flag, id, keyword, site_code) => {
-    console.log(site_code)
-    switch (list_flag) {
-        case "products":
-            return products(site_code)
-        case "product":
-            return productDetail(id)
-        case "search":
-            return productList(keyword)
-        default:
-            return ""
-    }
-}
-
-const products = (site_code) => {
-    return (
-        <ProductsContainer>
-            <SiteTitle site_code={site_code}></SiteTitle>
-            <SiteProductList site_code={site_code} main_flag={false}></SiteProductList>
-        </ProductsContainer >);
-}
-
-const productDetail = (productID) => {
-    return (
-        <ProductDetail productID={productID} />
-    )
-}
-
-const productList = (keyword) => {
-    // return <ProductList keyword={keyword} />
-    const siteInfo = { siteID: 'AA', siteName: '11번가' };
-    const productItems = [
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-        {
-            productImage: '',
-            productName: '아이폰 팝니다',
-            productPrice: '110000',
-        },
-    ];
-    return (
-        <ProductsContainer>
-            <ProductList siteInfo={siteInfo} productItems={productItems} />
-        </ProductsContainer>
-    )
-
-}
-
 class TmpApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productItems: [],
+        };
+    }
+    Products = ({ location, match }) => {
+        const { list_flag } = match.params;
+        const query = queryString.parse(location.search);
+        const { id, keyword, site_code } = query;
+        const childComponent = this.getChildComponent(list_flag, id, keyword, site_code);
+        return (
+            <div className="App">
+                <Header container="search-bar-container">
+                    <SearchBar />
+                </Header>
+                <BoardList site_code={id}></BoardList>
+                {childComponent}
+            </div>
+        );
+    };
+    getChildComponent = (list_flag, id, keyword, site_code) => {
+        console.log(list_flag,site_code);
+        switch (list_flag) {
+            case 'products':
+                return this.products(site_code);
+            case 'product':
+                return this.productDetail(id);
+            case 'search':
+                return this.productList(keyword);
+            default:
+                return '';
+        }
+    };
+
+    products = site_code => {
+        return (
+            <ProductsContainer>
+                <SiteTitle site_code={site_code}></SiteTitle>
+                <SiteProductList site_code={site_code} main_flag={false}></SiteProductList>
+            </ProductsContainer>
+        );
+    };
+
+    productDetail = productID => {
+        return <ProductDetail productID={productID} />;
+    };
+
+    productList = keyword => {
+        const siteInfo = { siteID: 'AA', siteName: '11번가' };
+
+        axios.get(`http://172.20.10.5:3002/product/search?title=${keyword}`)
+        .then(data => {
+            this.setState({ productItems: data });
+            console.log('data',data)
+        });
+        return (
+            <ProductsContainer>
+                <ProductList siteInfo={siteInfo} productItems={this.state.prodctItems} />
+            </ProductsContainer>
+        );
+    };
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route path="/:list_flag" component={Products} />
-                    <Route exact path="/" component={Home} />
+                    <Route path="/:list_flag" component={this.Products} />
+                    <Route exact path="/" component={this.Home} />
                 </Switch>
             </Router>
         );
     }
-}
-const Home = () => {
-    const options = {
-        activeClasses: 'active',
-        sectionClassName: 'section',
-        anchors: ['', ''],
-        scrollBar: false,
-        navigation: false,
+    Home = () => {
+        const options = {
+            activeClasses: 'active',
+            sectionClassName: 'section',
+            anchors: ['', ''],
+            scrollBar: false,
+            navigation: false,
+        };
+        return (
+            <SectionsContainer {...options}>
+                <div className="App">
+                    <Section>
+                        <Header container="main-search-bar-container">
+                            <SearchBar />
+                            <img
+                                src={WordCloud}
+                                alt=""
+                                style={{ marginTop: '160px', marginBottom: '60px' }}
+                            />
+                        </Header>
+                    </Section>
+                    <Section>
+                        <ProductsContainer main_flag={true}>
+                            <h1>최근에 등록한 매물</h1>
+                            <SiteProductList main_flag={true}></SiteProductList>
+                        </ProductsContainer>
+                    </Section>
+                </div>
+            </SectionsContainer>
+        );
     };
-    return (
-        <SectionsContainer {...options}>
-            <div className="App">
-                <Section>
-                    <Header container="main-search-bar-container">
-                        <SearchBar />
-                        <img src={WordCloud} alt="" style={{ marginTop: "160px", marginBottom: "60px" }} />
-                    </Header>
-                </Section>
-                <Section>
-                    <ProductsContainer main_flag={true}>
-                        <h1>최근에 등록한 매물</h1>
-                        <SiteProductList main_flag={true}></SiteProductList>
-                    </ProductsContainer>
-                </Section>
-            </div>
-        </SectionsContainer>
-    );
 }
 
 /* eslint-disable import/no-extraneous-dependencies */
 // import React, { Component } from "react";
 // import ReactFullpage from "@fullpage/react-fullpage";
-
 
 // const anchors = ["firstPage", "secondPage", "thirdPage"];
 
@@ -230,8 +176,5 @@ const Home = () => {
 //         )
 //     }
 // }
-
-
-
 
 export default TmpApp;

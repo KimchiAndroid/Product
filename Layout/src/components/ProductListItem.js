@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 class ProductListItem extends Component {
   render() {
-    const { productImage, productName, productPrice, productID } = this.props;
+    const { thumbnail, title, price, id } = this.props;
     return (
-      <Link to={`/product/?id=${productID}`}>
+      <Link to={`/detail/?id=${id}`}>
         <div className="product-list-item">
           <div className="product-image">
-            <img src={productImage || productDefaultImage} alt="" />
+            <img src={thumbnail || productDefaultImage} alt="" />
           </div>
-          <div className="product-name">{productName}</div>
-          <div className="product-price">{productPrice}원</div>
+          <div className="product-name">{title}</div>
+          <div className="product-price">{price}원</div>
         </div>
       </Link>
     );
