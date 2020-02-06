@@ -1,0 +1,41 @@
+name: Back Deployment
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+    paths:
+      - 'Main_Server/**'
+
+jobs:
+  Back_Deployment:
+    runs-on: ubuntu-latest
+    # Run only on merged pull requests
+    if: |
+      github.event.pull_request.merged && 
+      github.event.pull_request.merge_commit_sha != null
+      
+    steps:
+      - name: Checkout a Git repository at a particular version
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+      
+      - name: Test
+        run: |
+          ls -al
+          pwd
+          echo Hello! Back_Deployment.yml!
+          
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            ls -al
+            pwd
+            echo SSH Hello! Back_Deployment.yml!
