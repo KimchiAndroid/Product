@@ -70,5 +70,21 @@
                 <button type="submit">입력</button>
             </form>
         </div>
+        <div>
+            Product Detail
+            <form action="/product/detail" method="GET">
+                <label for="id">id : </label>
+                <input type="text" placeholder="ID 값을 입력하세요" name="id" required />
+                <select name="site_code">
+                    <option value="000">11번가</option>
+                    <option value="001">번개장터</option>
+                    <option value="002">중고나라</option>
+                    <option value="003">당근마켓</option>
+                    <option value="004">셀잇</option>
+                    <option value="005">헬로마켓</option>
+                </select>
+                <button type="submit">입력</button>
+            </form>
+        </div>
     </body>
 </html>
