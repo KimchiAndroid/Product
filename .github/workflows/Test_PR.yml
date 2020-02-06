@@ -20,12 +20,6 @@ jobs:
         with:
           node-version: '12.14.0'
           
-      # Below code is for checking folder. You must be disable this code when you deploy this code.
-      - name: Check unit test environment
-        run: |
-          pwd
-          ls -al
-          
       - name: Run ESLint
         run: |
           cd Main_Server/API
@@ -45,13 +39,7 @@ jobs:
         uses: actions/setup-node@v1.1.0
         with:
           node-version: '12.14.0'
-      
-      # Below code is for checking folder. You must be disable this code when you deploy this code.
-      - name: Check unit test environment
-        run: |
-          pwd
-          ls -al          
-      
+            
       - name: Setup unit test environment
         run: |
           cd Main_Server && npm install
@@ -59,11 +47,5 @@ jobs:
       
       - name: Run unit test
         run: |
-          pwd
-          ls -al
           cd Main_Server/API
           npm run test
-          
-  
-          
-    
