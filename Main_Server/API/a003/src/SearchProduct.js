@@ -12,22 +12,18 @@ export const scrapSite = (keyword) => {
         .then(html => {
             let ulList = [];
             const $ = cheerio.load(html.data);
-            const $bodyList = $('div.article-info');
+            const $bodyList = $('body > article');
             $bodyList.each(function (i, elem) {
                 ulList[i] = {
                     ProductNum: i + 1,
-                    Product: $(this)
-                        .find('span.article-title')
-                        .text(),
-                    content: $(this)
-                        .find('span.article-content')
-                        .text().replace(/\n/g, ''),
-                    location: $(this)
-                        .find('p.article-region-name')
-                        .text().trim(),
-                    price: $(this)
-                        .find('p.article-price')
-                        .text().trim(),
+                    ProductName: $(this).find('span.article-title').text(),
+                    ProductPrice: $(this).find('p.article-price').text().trim(),
+                    ProductImage: $(this).find('div.card-photo').find('img').attr('src'),
+                    Content: $(this).find('span.article-content').text().replace(/\n/g, ''),
+                    PageUrl: ('https://daangn.com').concat($(this).find('article > a').attr('href')),
+                    SellersLocation: $(this).find('p.article-region-name').text().trim(),
+                    Productlike: $(this).find('span.article-watch').text().trim(),
+                    ReviewCount: $(this).find('span.article-comment').text().trim(),
                 };
             });
             const data = ulList.filter(n => n.ProductNum);
