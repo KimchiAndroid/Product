@@ -3,7 +3,7 @@ name: Check & Test PR
 on:
   pull_request:
     branches:
-      - s5kywa1k3r_docker
+      - master
     paths:
       - 'Main_Server/**'
       
