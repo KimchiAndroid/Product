@@ -44,7 +44,7 @@ const Products = ({ location, match }) => {
             <Header container="search-bar-container">
                 <SearchBar />
             </Header>
-            <BoardList site_code={id}></BoardList>
+            <BoardList site_code={site_code}></BoardList>
             {childComponent}
         </div >
     )
@@ -144,6 +144,10 @@ const productList = (keyword) => {
     ];
     return (
         <ProductsContainer>
+            <ProductList siteInfo={siteInfo} productItems={productItems} />
+            <ProductList siteInfo={siteInfo} productItems={productItems} />
+            <ProductList siteInfo={siteInfo} productItems={productItems} />
+            <ProductList siteInfo={siteInfo} productItems={productItems} />
             <ProductList siteInfo={siteInfo} productItems={productItems} />
         </ProductsContainer>
     )
