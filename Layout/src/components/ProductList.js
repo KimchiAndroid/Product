@@ -38,7 +38,7 @@ class ProductList extends Component {
         const renderItem = (index, key) => {
             const productItem = productItems[index];
             // console.log('item', productItem);
-            return <ProductListItem key={key} {...productItem} />;
+            return <ProductListItem site_code={siteCode} key={key} {...productItem} />;
         };
         const scrollHandler = event => {
             const { target } = event;

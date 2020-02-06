@@ -54,7 +54,7 @@ class Search extends Component {
         const query = queryString.parse(this.props.location.search);
         const { keyword } = query;
         const { page } = this.state[siteCode];
-        this.requestSearch(siteCode, keyword, page);
+        this.requestSearch(siteCode, keyword, page + 1);
     };
 
     render() {
