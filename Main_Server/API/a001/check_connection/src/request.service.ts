@@ -1,7 +1,8 @@
 import * as request from 'request-promise';
 import { APISite } from '../../option';
+import { CheckLinkResponse } from '../../Common';
 
-export const requestService = () => {
+export const requestService = (): Promise<CheckLinkResponse> => {
     return new Promise(resolve =>
         request(APISite, (error, response) => {
             if (error) {
