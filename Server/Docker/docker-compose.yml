@@ -10,12 +10,8 @@ services:
         image: super:test
 
         #depends_on:
-        #    - db_test
         #    - front_test
         volumes:
-            # - ~/github/API/:/home/API
-            # - ./superdocker/test_api:/home/test_api
-            # - ./superdocker/Main_Server:/home/super
             - ~/Product/Main_Server:/home/Main_Server
         ports:
             - "30100:3002"
@@ -27,20 +23,10 @@ services:
                 cd /home/Main_Server
                 npm install && npm run build
                 npm run copy-view && npm start
-                #cd ../../test_api/joongna
-                #npm install && npm run build
-                #cd ..
-                #npm install && npm run dev
-
-    db_test:
-        image: mysql:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=secure
 
     front_test:
         build: ./frontdocker
         image: front:test2
-                #service nginx reload
 
         volumes:
             - ~/Product/Layout:/home/Layout
@@ -52,7 +38,6 @@ services:
             - /bin/bash
             - -c
             - |
-                pwd
                 cd /home/Layout
                 npm install && npm start
                 
@@ -65,7 +50,7 @@ services:
         image: super:stable
 
         volumes:
-            - ~/Test_Product/Main_Server:/home/Main_Server
+            - ~/Product/Main_Server:/home/Main_Server
         ports:
             - "30001:3002"
         command:
@@ -80,7 +65,7 @@ services:
         image: front:stable
 
         volumes:
-            - ~/Test_Product/Layout:/home/Layout
+            - ~/Product/Layout:/home/Layout
         ports:
             - "30000:3000"
         command:
