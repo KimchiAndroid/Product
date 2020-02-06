@@ -17,12 +17,12 @@ describe('Init Test', () => {
 
 describe('Product List Test', () => {
     it('makeQuery function Test', () => {
-        const query = queryString('test product');
+        const query = queryString('test product', '2');
         expect(query).toStrictEqual({
             keyWord: 'test product',
             stat_uid: '10649087',
             version: '4',
-            page: 5,
+            page: '2',
         });
     });
     it('responseMapping function Test', () => {
