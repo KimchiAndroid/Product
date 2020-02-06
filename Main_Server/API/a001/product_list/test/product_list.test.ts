@@ -1,5 +1,5 @@
 import { responseMapping } from '../src/responseMapping';
-import { SiteResponseDetail, SiteResponseList } from '../../interfaces/SiteResponse.interface';
+import { SiteResponseList } from '../../interfaces/SiteResponse.interface';
 import { queryString } from '../src/scrap.component';
 import { ProductListResponse } from '../../Common';
 
