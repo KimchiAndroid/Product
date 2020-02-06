@@ -5,58 +5,70 @@
             Product Information
         </title>
         <meta charset="utf-8" />
-        <script src='https://code.jquery.com/jquery-3.4.1.min.js' type="text/javascript"></script>
-        <script src="./productBase.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="./productBase.css" />
     </head>
     <body>
-        <p> Call Every API
+        <div>
+            Call Every API
             <form action="/product/search" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+                <label for="title">상품명 : </label>
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p> 
-         <p> A000 : 11번가
-            <form action="/product/search?site=000&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A000 : 11번가
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="000" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p> 
-        <p> A001 : 번개장터
-            <form action="/product/search?site=001&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A001 : 번개장터
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="001" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p> 
-        <p> A002 : 중고나라
-            <form action="/product/search?site=002&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A002 : 중고나라
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="002" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p>   
-        <p> A003 : 당근마켓
-            <form action="/product/search?site=003&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A003 : 당근마켓
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="003" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p>   
-        <p> A004 : 셀잇
-            <form action="/product/search?site=004&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A004 : 셀잇
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="004" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p> 
-        <p> A005 : 헬로마켓
-            <form action="/product/search?site=005&" method="GET">
-                <label for="title"><b>상품명 : </b></label>
+        </div>
+        <div>
+            A005 : 헬로마켓
+            <form action="/product/search" method="GET">
+                <label for="title">상품명 : </label>
+                <input type="hidden" name="site" value="005" />
                 <input type="text" placeholder="상품명을 입력하세요" name="title" required />
                 <button type="submit">입력</button>
             </form>
-        </p>   
+        </div>
     </body>
 </html>
