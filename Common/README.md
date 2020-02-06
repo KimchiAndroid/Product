@@ -1,6 +1,6 @@
 ## 현재 버전
 
--   version : 1.2.1
+-   version : 1.2.2
 -   author: IMRaccoon
 
 <br>
@@ -30,3 +30,4 @@
 -   v.1.2.0
     -   Product Detail Request site_code 필드 추가
     -   Product List Request page 필드 추가
+    -   Product Detail Request site_code optional 수정
