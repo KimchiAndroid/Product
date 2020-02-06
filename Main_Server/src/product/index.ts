@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import * as path from 'path';
-import { callApp } from './callApp.service';
+import { productListAPI, productDetailAPI } from './callApp.service';
 import { getData, updateData } from '../database/connect.service';
 
 const productRouter = Router();
@@ -24,9 +24,12 @@ productRouter.get('/search', async (req: Request, res: Response, next: NextFunct
         site_code = req.query.site;
     }
     try {
-        const result = await getData(req.query.title)(site_code);
-        console.log(result);
-        // const result = await Promise.all(callApp({ search_word: req.query.title })(site_code));
+        // const result = await getData(req.query.title)(site_code);
+        // console.log(result);
+
+        const result = await Promise.all(
+            productListAPI({ search_word: req.query.title })(site_code),
+        );
         // result[0].forEach(res => updateData(res));
 
         // const db_result: Array<Object> = await getData(req.query.title); // title에 keyword 정보 있는 모든 행들 추출 -> Array<Object> 형태
@@ -41,6 +44,24 @@ productRouter.get('/search', async (req: Request, res: Response, next: NextFunct
         //         return res.status(200).json(result);
         //     }
         // }
+
+        return res.status(200).json(result);
+    } catch (err) {
+        throw new Error(err);
+    }
+});
+
+productRouter.get('/detail', async (req: Request, res: Response, next: NextFunction) => {
+    if (!req.query.id || typeof req.query.id !== 'string') {
+        return res.status(500).send('Error!! There is no id');
+    }
+    if (!req.query.site_code || typeof req.query.site_code !== 'string') {
+        return res.status(500).send('Error!! There is no site code');
+    }
+    try {
+        const result = await Promise.all(
+            productDetailAPI({ id: req.query.id, site_code: req.query.site_code }),
+        );
 
         return res.status(200).json(result);
     } catch (err) {

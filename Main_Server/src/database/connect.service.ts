@@ -11,25 +11,25 @@ connect.connect();
 export const getData = (keyWord: string) => async (siteCode?: SiteCode) => {
     const return_list: Array<Object> = [];
 
-    if (!!siteCode) {
-        try {
-            const b = connect.query(
-                'select * from product_list where title like ? and site_code = ?',
-                ['%' + keyWord + '%', siteCode],
-                (err, data) => {
-                    if (err) {
-                        throw err;
-                    }
-                    return_list.push(...data);
-                },
-            );
-        } catch (err) {
-            await connect.rollback();
-            connect.release();
-            console.log('Query Error!');
-            return false;
-        }
-    }
+    // if (!!siteCode) {
+    //     try {
+    //         const b = connect.query(
+    //             'select * from product_list where title like ? and site_code = ?',
+    //             ['%' + keyWord + '%', siteCode],
+    //             (err, data) => {
+    //                 if (err) {
+    //                     throw err;
+    //                 }
+    //                 return_list.push(...data);
+    //             },
+    //         );
+    //     } catch (err) {
+    //         await connect.rollback();
+    //         connect.release();
+    //         console.log('Query Error!');
+    //         return false;
+    //     }
+    // }
     const a = connect.query(
         'select * from product_list where title like ?',
         ['%' + keyWord + '%'],
