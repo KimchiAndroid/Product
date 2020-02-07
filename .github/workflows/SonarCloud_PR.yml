@@ -12,8 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build Files for Scanning
-      run:
-      
+      run: |
+        cd Main_Server
+        npm install && npm run build
+        npm run copy-view
+        cd ../Layout
+        npm install
+           
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
