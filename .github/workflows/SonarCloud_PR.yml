@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Use a Nodejs version 12.14.0
+      uses: actions/setup-node@v1.1.0
+      with:
+        node-version: '12.14.0'
     - name: Build Files for Scanning
       run: |
         cd Main_Server
