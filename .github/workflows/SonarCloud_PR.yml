@@ -1,9 +1,12 @@
 name: SonarCloud Scan for PUSH
 
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branch:
       - master
+  # push:
+  #  branches-ignore:
+  #    - master
       
 jobs:
   sonarCloudTrigger:
