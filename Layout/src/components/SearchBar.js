@@ -1,12 +1,19 @@
-import React, { Component } from "react"
-import SiteIcon from "./utils/SiteIcon"
-import "../style/SearchBar.scss"
-import Search from "../static/search.png"
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import SiteIcon from './utils/SiteIcon';
+import '../style/SearchBar.scss';
+import Search from '../static/search.png';
+import { Link } from 'react-router-dom';
 class SearchBar extends Component {
     state = {
         keyword: '',
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyword: this.props.keyword,
+        };
+    }
 
     inputKeyword = e => {
         this.setState({
@@ -19,10 +26,10 @@ class SearchBar extends Component {
         }
     }
     render() {
-        const isSearch = this.props.isSearch ? "search" : "main";
+        const isSearch = this.props.isSearch ? 'search' : 'main';
         return (
             <>
-                <Link to={"/"}>
+                <Link to={'/'}>
                     <SiteIcon site_code={isSearch} />
                 </Link>
                 <div className="search-bar">

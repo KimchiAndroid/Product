@@ -9,13 +9,13 @@ import queryString from 'query-string'
 
 const Products = ({ location }) => {
     const query = queryString.parse(location.search);
-    const { id, site_code } = query;
+    const { site_code } = query;
     return (
         <div className="App">
             <Header container="search-bar-container">
-                <SearchBar />
+                <SearchBar isSearch={true} />
             </Header>
-            <BoardList site_code={id}></BoardList>
+            <BoardList site_code={site_code}></BoardList>
 
             <ProductsContainer>
                 <SiteTitle site_code={site_code}></SiteTitle>
