@@ -3,18 +3,6 @@ import { SiteResponseList } from '../../interfaces/SiteResponse.interface';
 import { queryString } from '../src/scrap.component';
 import { ProductListResponse } from '../../Common';
 
-describe('Init Test', () => {
-    it('Hello Test', () => {
-        expect('Hello').toStrictEqual('Hello');
-        expect('Hi').toStrictEqual('Hi');
-    });
-
-    it('Bye Test', () => {
-        expect('Bye').toStrictEqual('Bye');
-        expect(true).toBeTruthy();
-    });
-});
-
 describe('Product List Test', () => {
     it('makeQuery function Test', () => {
         const query = queryString('test product', '2');
