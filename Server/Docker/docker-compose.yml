@@ -72,5 +72,5 @@ services:
             - /bin/bash
             - -c
             - |
-                cd /home/Layout
-                npm install && npm start
+                cd /home/Layout && npm run build
+                cd LIVE && npm run start
