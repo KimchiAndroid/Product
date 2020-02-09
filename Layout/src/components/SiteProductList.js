@@ -34,7 +34,7 @@ class SiteProductList extends Component {
         const productItem = Object.values(this.state.res).map((item, index) => {
             const { productImage, productName, productPrice, productID } = item;
             return (
-                <ProductListItem key={index} productImage={productImage} productName={productName} productPrice={productPrice} productID={productID}></ProductListItem>
+                <ProductListItem key={index} thumbnail={productImage} title={productName} price={productPrice} id={productID}></ProductListItem>
             )
         });
         return (

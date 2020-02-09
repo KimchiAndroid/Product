@@ -3,7 +3,6 @@ import SiteIcon from "./utils/SiteIcon"
 import "../style/SearchBar.scss"
 import Search from "../static/search.png"
 import { Link } from "react-router-dom";
-
 class SearchBar extends Component {
     state = {
         keyword: ""
@@ -20,10 +19,11 @@ class SearchBar extends Component {
         }
     }
     render() {
+        const isSearch = this.props.isSearch ? "search" : "main";
         return (
             <>
                 <Link to={"/"}>
-                    <SiteIcon site_code="" />
+                    <SiteIcon site_code={isSearch} />
                 </Link>
                 <div className="search-bar">
                     <input type="text" className="search-bar-input" placeholder="원하시는 상품을 입력하세요." onChange={this.inputKeyword} onKeyPress={this.handleKeyPress} value={this.state.keyword} />
