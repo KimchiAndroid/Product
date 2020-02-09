@@ -39,6 +39,7 @@ class BoardList extends Component {
                     boardName={boardName}
                     boardNo={boardNo}
                     site_code={this.props.site_code}
+                    keyword={this.props.keyword}
                 ></BoardListItem>
             );
         });
