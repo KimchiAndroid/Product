@@ -27,7 +27,7 @@ class Detail extends Component {
         return (
             <div className="App">
                 <Header container="search-bar-container">
-                    <SearchBar />
+                    <SearchBar isSearch={true} />
                 </Header>
                 <ProductDetail data={res} />;
             </div>

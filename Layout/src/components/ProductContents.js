@@ -12,7 +12,7 @@ class ProductContents extends Component {
         return (
             <>
                 <div className="productMain">
-                    <ProductImage src={image ? image[0] : ''} className="productDetailImage" />
+                    <ProductImage src={image ? image[0] : null} className="productDetailImage" />
                     <div className="productMainDetail">
                         <SiteTitle site_code={site_code}></SiteTitle>
                         <div className="title">{title}</div>
