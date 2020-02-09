@@ -9,17 +9,18 @@ import queryString from 'query-string'
 
 const Products = ({ location }) => {
     const query = queryString.parse(location.search);
-    const { site_code } = query;
+    const { site_code, keyword } = query;
+    console.log(query)
     return (
         <div className="App">
             <Header container="search-bar-container">
                 <SearchBar isSearch={true} />
             </Header>
-            <BoardList site_code={site_code}></BoardList>
+            <BoardList site_code={site_code} keyword={keyword}></BoardList>
 
             <ProductsContainer>
                 <SiteTitle site_code={site_code}></SiteTitle>
-                <SiteProductList site_code={site_code} main_flag={false}></SiteProductList>
+                <SiteProductList siteCode={site_code} keyword={keyword}></SiteProductList>
             </ProductsContainer>
         </div>
     );
