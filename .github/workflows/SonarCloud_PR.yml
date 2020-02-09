@@ -1,35 +1,32 @@
-name: SonarCloud Scan for PUSH
+# name: SonarCloud Scan for Pull Request
 
-on:
-  pull_request:
-    branch:
-      - master
-  # push:
-  #  branches-ignore:
-  #    - master
+# on:
+#   pull_request:
+#     branches:
+#       - master
       
-jobs:
-  sonarCloudTrigger:
-    name: SonarCloud Trigger
-    runs-on: ubuntu-latest
-    steps:
-    - name: Use a Nodejs version 12.14.0
-      uses: actions/setup-node@v1.1.0
-      with:
-        node-version: '12.14.0'
-    - uses: actions/checkout@master
+# jobs:
+#   sonarCloudTrigger:
+#     name: SonarCloud Trigger
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Use a Nodejs version 12.14.0
+#       uses: actions/setup-node@v1.1.0
+#       with:
+#         node-version: '12.14.0'
+#     - uses: actions/checkout@master
     
-    - name: Build Files for Scanning
-      run: |
-        cd Main_Server
-        npm install && npm run build
-        npm run copy-view
-        cd ../Layout
-        npm install
+#     - name: Build Files for Scanning
+#       run: |
+#         cd Main_Server
+#         npm install && npm run build
+#         npm run copy-view
+#         cd ../Layout
+#         npm install
            
-    - name: SonarCloud Scan
-      #uses: sonarsource/sonarcloud-github-action@master
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#     - name: SonarCloud Scan
+#       #uses: sonarsource/sonarcloud-github-action@master
+#       uses: sonarsource/sonarcloud-github-action@master
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
