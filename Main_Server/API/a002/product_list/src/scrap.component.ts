@@ -1,60 +1,79 @@
+
 import * as rp from 'request-promise';
 import * as cheerio from 'cheerio';
-import { basesiteurl, cafeurl } from '../../option';
-import { SiteResponse, SiteResponseDetail, SiteResponseDetailOne } from '../../interfaces/SiteResponse.interface';
+//import { basesiteurl, cafeurl } from '../../option';
 import { responseMapping } from './responseMapping';
 import { SiteRequest } from '../../interfaces/SiteRequest.interface';
+import { ProductListRequest } from '../../Common';
+import * as request from 'request';
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import { SiteListRequest } from '../../interfaces/SiteRequest.interface';
 
-  const makeqs= (keyword : string )=> ({
-    'search.query' : keyword, 
-    'search.menuid' : 0,
-    'search.searchBy' : 0,
-    'search.sortBy' : 'date',
-    'search.clubid' : '10050146', //중고나라id
-    'search.option' : 0,
-    'search.defaultValue' : 1,
-  });
-  export const scrapComponent = async (keyword : string ) => {
 
-    //const response = await rp.get("https://openapi.naver.com/v1/search/cafearticle.json");
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
-    $.getJSON(requestURL,function(data){
-      const items = data.item.items;
-          console.log(items);
+  export const scrapComponent = async ({ search_word }: ProductListRequest) => {
+    const options = {
+        url: 'https://m.joongna.com/search-list',
+        method: 'POST',
+        port: 200,
+        body:{
+          key:'value'
+        },
+        
+        json:true
+    };
+    /*
+    request.post('https://m.joongna.com/search-list', {form:{key:'value'}}, (error, response, body) =>{
+        console.log("asf");
+        console.log('post error:', error);
+        console.log('post statusCode:', response && response.statusCode); 
+        console.log('body:', body);
+    });
+    */
+    request.post({url:'https://search-api.joongna.com/v2/search/usedGoods?hasTab=0', formData: testt}, function (err, httpResponse, body) {
+        console.log(httpResponse.body);
     });
 
-   /*
-    //const siteurl = await rp("https://m.cafe.naver.com/ArticleAllListAjax.nhn?search.clubid=10050146&search.boardtype=L&search.questionTab=A&search.totalCount=201&search.page=2");
-    const qs = Object.entries(makeqs(keyword)).map(e => e.join('=')).join('&');
-    const queryurl = encodeURI(basesiteurl+qs);
-    console.log(queryurl);
+    request.post(options, function(err,httpResponse,body){ 
+        //console.log(body);
+       //console.log(httpResponse);
 
-    const siteurl = await rp(queryurl);
-    const $ = cheerio.load(siteurl);
-    const titles = $('.search_list .tit h3')
-        .map((index, element) => {
-            return $(element).text();
-        })
-        .toArray();
-    //console.log(titles);
-
-    const url = $('.search_list .list_tit a')
-        .map((index, element) => {
-            return cafeurl+$(element).attr("href");
-        })
-        .toArray();
-​    //console.log(url);
-
-    //const product_detail_list: SiteResponseDetail[] = 
-    //product_list.ProductSearchResponse.Products[0].Product;
-    //return mapping_to_form;
-*/
+        console.log("2");
+    })
+    const response = await rp(options);
+    console.log("111");
+     
 };
 
-  interface ProductlistRequest {
-    id: number;
-    site_code : '002';
-    title: string;
-    price: number;
-    thumbnail?: string;
-  }
+scrapComponent({ search_word: '모니터'})
+    .then(value => console.log(value))
+    .catch(err => {
+        throw new Error(err);
+    })
+    .finally(() => process.exit(0));
+
+const testt = {
+    filter: {
+        categoryDepth: 0, 
+        categorySeq: 0, 
+        color: "ZZZZZZ",
+        condition: {options: {flawedYn: 0, fullPackageYn: 0, limitedEditionYn: 0}, productCondition: -1},
+        //locations: [],
+        maxPrice: 0,
+        minPrice: 0,
+        platformType: 1,
+        preferredTrade: 0,
+        sortEndDate: "",
+        sortStartDate: "",
+        state: -1,
+        //categorySeqList: [],
+        productSectionType: 0,
+        searchStartDate: "2020-02-09 06:49:08",
+    },
+    isSearchSaved: 1,
+    searchQuantity: 20,
+    searchWord: "모니터",
+    sort: {date: 0, order: 0, price: 0},
+    startIndex: 0,
+}
+      

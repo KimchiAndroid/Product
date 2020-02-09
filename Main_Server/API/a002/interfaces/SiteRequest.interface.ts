@@ -6,3 +6,12 @@ export interface SiteRequest {
   /** 검색 요청 값 */
   keyword: string;
 }
+
+export interface SiteListRequest {
+  filter: {};
+  isSearchSaved: number;
+  searchQuantity: number;
+  searchWord: string;
+  sort: {};
+  startIndex: number;
+}
