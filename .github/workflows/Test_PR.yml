@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - master
-    paths:
-      - 'Main_Server/**'
+    # paths:
+    #  - 'Main_Server/**'
       
 jobs:
   ESLint_Check:
