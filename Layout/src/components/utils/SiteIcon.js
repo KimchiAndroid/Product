@@ -20,6 +20,8 @@ class SiteIcon extends Component {
                 return "IconMain"
             case "search":
                 return "IconSearch"
+            default:
+                return ""
         }
     }
     render() {

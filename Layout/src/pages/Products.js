@@ -13,7 +13,7 @@ const Products = ({ location }) => {
     return (
         <div className="App">
             <Header container="search-bar-container">
-                <SearchBar />
+                <SearchBar isSearch={true} />
             </Header>
             <BoardList site_code={id}></BoardList>
 
