@@ -57,10 +57,6 @@ class Search extends Component {
         this.requestSearch(siteCode, keyword, page + 1);
     };
 
-    xxxClicked = () => {
-        document.getElementById('');
-    };
-
     render() {
         const { siteCode, keyword } = this.state;
         return (

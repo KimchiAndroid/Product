@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
-import ProductDetail from '../components/ProductDetail';
+import ProductContents from '../components/ProductContents';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
-import BoardList from '../components/BoardList';
 import axios from 'axios';
 import { HOST_URL } from '../common/constant';
 
@@ -11,7 +10,21 @@ class Detail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            res: '',
+            res: {
+                "site_code": "000",
+                "image": ["img"],
+                "title": "아이폰 팝니다 @@@",
+                "price": "900000",
+                "origin_url": "https://naver.com",
+                "detail": "아이폰 뭐시기뭐시기 중고 S급 팝니다<br>직거래<br>광진구 가능\n",
+                "date": "2020-01-01",
+                "tags": [
+                    {
+                        "location": "경상북도 구미시 원평2동",
+                        "delivery": "무료배송"
+                    }
+                ]
+            },
         };
     }
     async componentDidMount() {
@@ -29,7 +42,7 @@ class Detail extends Component {
                 <Header container="search-bar-container">
                     <SearchBar isSearch={true} />
                 </Header>
-                <ProductDetail data={res} />;
+                <ProductContents data={res} />;
             </div>
         );
     }

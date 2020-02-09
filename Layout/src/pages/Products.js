@@ -20,7 +20,7 @@ const Products = ({ location }) => {
 
             <ProductsContainer>
                 <SiteTitle site_code={site_code}></SiteTitle>
-                <SiteProductList site_code={site_code} main_flag={false}></SiteProductList>
+                <SiteProductList siteCode={site_code} keyword={keyword}></SiteProductList>
             </ProductsContainer>
         </div>
     );
