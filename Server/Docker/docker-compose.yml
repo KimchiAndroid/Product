@@ -73,4 +73,6 @@ services:
             - -c
             - |
                 cd /home/Layout
-                npm install && npm start
+                npm install && npm run build
+                cd LIVE
+                npm install && npm run start
