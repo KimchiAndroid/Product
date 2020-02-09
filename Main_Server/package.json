@@ -39,16 +39,17 @@
         "typescript": "^3.7.4"
     },
     "dependencies": {
+        "axios": "^0.19.2",
         "body-parser": "^1.19.0",
+        "cheerio": "^1.0.0-rc.3",
         "cors": "^2.8.5",
         "ejs": "^3.0.1",
         "express": "^4.17.1",
         "http-errors": "^1.7.3",
+        "iconv-lite": "^0.5.0",
+        "moment": "^2.24.0",
         "mysql": "^2.17.1",
         "path": "^0.12.7",
-        "axios": "^0.19.2",
-        "cheerio": "^1.0.0-rc.3",
-        "iconv-lite": "^0.5.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.5",
         "xml2js": "^0.4.23"

@@ -1,6 +1,6 @@
 ## 현재 버전
 
--   version : 1.1.1
+-   version : 1.2.2
 -   author: IMRaccoon
 
 <br>
@@ -27,3 +27,7 @@
     -   Site Code 추가: 11번가 테스트 전용
     -   Check Linke Response 추가
     -   id 값 String 타입으로 변경
+-   v.1.2.0
+    -   Product Detail Request site_code 필드 추가
+    -   Product List Request page 필드 추가
+    -   Product Detail Request site_code optional 수정

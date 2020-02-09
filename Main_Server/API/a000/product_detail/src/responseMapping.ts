@@ -1,4 +1,3 @@
-import { SiteResponseDetail } from '../../interfaces/SiteResponse.interface';
 import { ProductDetailResponse } from '../../Common/action';
 import { SiteDetailRequest } from '../../interfaces/SiteDetailRequest.interface';
 import { originSite } from '../../option';

@@ -14,21 +14,18 @@ productRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 productRouter.get('/search', async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.query.title || typeof req.query.title !== 'string') {
+    if (!req.query.title || !req.query.page) {
         return res.status(500).send('Error!! There is no Query String');
     }
 
-    let site_code = null;
-
-    if (req.query.site) {
-        site_code = req.query.site;
-    }
     try {
         // const result = await getData(req.query.title)(site_code);
         // console.log(result);
 
         const result = await Promise.all(
-            productListAPI({ search_word: req.query.title })(site_code),
+            productListAPI({ search_word: req.query.title, page: req.query.page })(
+                req.query.site_code,
+            ),
         );
         // result[0].forEach(res => updateData(res));
 
@@ -59,9 +56,7 @@ productRouter.get('/detail', async (req: Request, res: Response, next: NextFunct
         return res.status(500).send('Error!! There is no site code');
     }
     try {
-        const result = await Promise.all(
-            productDetailAPI({ id: req.query.id, site_code: req.query.site_code }),
-        );
+        const result = await productDetailAPI({ id: req.query.id, site_code: req.query.site_code });
         return res.status(200).json(result);
     } catch (err) {
         throw new Error(err);
