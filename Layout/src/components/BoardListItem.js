@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 class BoardListItem extends Component {
     render() {
         const { boardName, boardNo } = this.props;
-        const { site_code } = this.props;
+        const { site_code, keyword } = this.props;
         const selected = site_code === boardNo ? true : false;
         // console.log(document.getElementById(boardNo).clientTop)
         return (
             <div className={cx('board-list-item', { selected })}>
-                <a href={`/products/    ?site_code=${boardNo}`}>
+                <a href={`/products/?site_code=${boardNo}&keyword=${keyword}`}>
                     <SiteTitle site_code={boardNo} />
                 </a>
             </div>

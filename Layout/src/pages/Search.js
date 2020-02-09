@@ -57,9 +57,9 @@ class Search extends Component {
         this.requestSearch(siteCode, keyword, page + 1);
     };
 
-    xxxClicked =()=>{
-        document.getElementById("")
-    }
+    xxxClicked = () => {
+        document.getElementById('');
+    };
 
     render() {
         const { siteCode, keyword } = this.state;
@@ -68,7 +68,7 @@ class Search extends Component {
                 <Header container="search-bar-container">
                     <SearchBar isSearch={true} keyword={keyword} />
                 </Header>
-                <BoardList site_code={siteCode}></BoardList>
+                <BoardList site_code={siteCode} keyword={keyword}></BoardList>
                 <ProductsContainer>
                     {this.siteInfos.map(siteInfo => {
                         const { siteName, siteCode } = siteInfo;

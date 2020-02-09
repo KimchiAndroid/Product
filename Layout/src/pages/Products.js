@@ -5,17 +5,18 @@ import SiteProductList from '../components/SiteProductList';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import BoardList from '../components/BoardList';
-import queryString from 'query-string'
+import queryString from 'query-string';
 
 const Products = ({ location }) => {
     const query = queryString.parse(location.search);
-    const { site_code } = query;
+    const { site_code, keyword } = query;
+    console.log(query)
     return (
         <div className="App">
             <Header container="search-bar-container">
-                <SearchBar isSearch={true} />
+                <SearchBar isSearch={true} keyword={keyword} />
             </Header>
-            <BoardList site_code={site_code}></BoardList>
+            <BoardList site_code={site_code} keyword={keyword}></BoardList>
 
             <ProductsContainer>
                 <SiteTitle site_code={site_code}></SiteTitle>
