@@ -1,0 +1,44 @@
+body {
+    margin: 1rem;
+}
+
+div {
+    margin-top: 1.5rem;
+    font-size: 20px;
+}
+
+form {
+    font-size: 1rem !important;
+    margin-top: 0.5rem;
+}
+
+input:focus {
+    border: 3px solid #555;
+}
+
+input {
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    padding: 10px 10px;
+    font: 0.8rem sans-serif;
+    outline: none;
+}
+
+button {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555555;
+    color: white;
+}

@@ -3,7 +3,6 @@ import SiteIcon from "./utils/SiteIcon"
 import "../style/SearchBar.scss"
 import Search from "../static/search.png"
 import { Link } from "react-router-dom";
-import { navigate } from "@reach/router"
 
 class SearchBar extends Component {
     state = {
@@ -17,7 +16,7 @@ class SearchBar extends Component {
     }
     handleKeyPress(e) {
         if (e.charCode === 13) {
-            navigate(`/search/${e.target.value}`)
+            window.location = `search/?keyword=${e.target.value}`;
         }
     }
     render() {
@@ -27,8 +26,8 @@ class SearchBar extends Component {
                     <SiteIcon site_code="" />
                 </Link>
                 <div className="search-bar">
-                    <input type="text" className="search-bar-input" placeholder="원하시는 상품을 입력하세요." onChange={this.inputKeyword} onKeyPress={this.handleKeyPress} />
-                    <Link to={`/search/${this.state.keyword}`}>
+                    <input type="text" className="search-bar-input" placeholder="원하시는 상품을 입력하세요." onChange={this.inputKeyword} onKeyPress={this.handleKeyPress} value={this.state.keyword} />
+                    <Link to={`/search/?keyword=${this.state.keyword}`}>
                         <img src={Search} alt="" className="search-icon" />
                     </Link>
                 </div>

@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import SiteIcon from "./SiteIcon"
 import "../../style/SiteTitle.scss"
 class SiteTitle extends Component {
-    constructor(props) {
-        super(props)
-        this.site_code = this.props.site_code
-        this.site_title = this.selectSiteIcon(this.site_code)
-    }
     selectSiteIcon = (site_code) => {
         switch (site_code) {
             case "000":
@@ -25,12 +20,15 @@ class SiteTitle extends Component {
                 return ""
         }
     }
+
     render() {
+        const { site_code } = this.props
+        const site_title = this.selectSiteIcon(site_code)
         return (
             <>
                 <div className="site-title">
-                    <SiteIcon site_code={this.site_code}></SiteIcon>
-                    <div className="title">{this.site_title}</div>
+                    <SiteIcon site_code={site_code}></SiteIcon>
+                    <div className="title">{site_title}</div>
                 </div>
             </>
         )

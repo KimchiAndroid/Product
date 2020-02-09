@@ -1,7 +1,8 @@
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
-import createError from 'http-errors';
+import bodyParser = require('body-parser');
+import cors = require('cors');
+import express = require('express');
+import { NextFunction, Request, Response } from 'express';
+import createError = require('http-errors');
 import { join } from 'path';
 import checkRouter from './check';
 import productRouter from './product';
@@ -19,8 +20,8 @@ app.use('/', mainRouter);
 app.use('/check', checkRouter, express.static(path.join(__dirname, '../views/check')));
 app.use('/product', cors(), productRouter);
 
-// 3000 포트 개방
-app.listen(3000);
+// 3002 포트 개방
+app.listen(3002);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

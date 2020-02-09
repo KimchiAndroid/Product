@@ -5,9 +5,10 @@ import { SiteResponse, SiteResponseDetail } from '../../interfaces/SiteResponse.
 import { requestService } from './request.service';
 import { responseMapping } from './responseMapping';
 import { SiteRequest } from '../../interfaces/SiteRequest.interface';
+import { ProductListRequest } from '../../Common';
 
-export const scrapComponent = async (keyWord: string) => {
-    const query_string = makeQuery(keyWord);
+export const scrapComponent = async ({ search_word, page }: ProductListRequest) => {
+    const query_string = makeQuery(search_word, page);
     const response = await requestService(query_string);
     const xml_string = iconv.decode(Buffer.from(response), 'EUC-KR').toString();
     const product_list: SiteResponse = await parseStringPromise(xml_string);
@@ -17,9 +18,9 @@ export const scrapComponent = async (keyWord: string) => {
     return mapping_to_form;
 };
 
-export const makeQuery = (keyword: string): SiteRequest => ({
+export const makeQuery = (keyword: string, pageNum: string): SiteRequest => ({
     key: APIkey,
     apiCode: 'ProductSearch',
     keyword,
-    pageNum: '1',
+    pageNum,
 });
