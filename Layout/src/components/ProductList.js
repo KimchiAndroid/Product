@@ -59,7 +59,7 @@ class ProductList extends Component {
             target.scrollLeft += target.clientWidth;
         };
         return (
-            <div className="product-site">
+            <div className="product-site" id={siteCode}>
                 <div className={cx('spinner', { loading })}>
                     <Loader color="#fff" />
                 </div>

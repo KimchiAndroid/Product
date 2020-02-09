@@ -45,26 +45,26 @@ class Search extends Component {
     componentWillMount() {
         const query = queryString.parse(this.props.location.search);
         const { keyword } = query;
+        this.setState({ keyword });
         this.siteInfos.forEach(siteInfo => {
             const { siteCode } = siteInfo;
             this.requestSearch(siteCode, keyword, 1);
         });
     }
     onMoreItem = siteCode => {
-        const query = queryString.parse(this.props.location.search);
-        const { keyword } = query;
+        const { keyword } = this.state;
         const { page } = this.state[siteCode];
         this.requestSearch(siteCode, keyword, page + 1);
     };
 
     render() {
-        const { siteCode } = this.state;
+        const { siteCode, keyword } = this.state;
         return (
             <div className="App">
                 <Header container="search-bar-container">
-                    <SearchBar isSearch={true} />
+                    <SearchBar isSearch={true} keyword={keyword} />
                 </Header>
-                <BoardList site_code={siteCode}></BoardList>
+                <BoardList site_code={siteCode} keyword={keyword}></BoardList>
                 <ProductsContainer>
                     {this.siteInfos.map(siteInfo => {
                         const { siteName, siteCode } = siteInfo;
