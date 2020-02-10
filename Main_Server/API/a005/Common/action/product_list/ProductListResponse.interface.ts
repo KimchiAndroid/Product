@@ -2,7 +2,7 @@ import { SiteCode } from '../../site_code';
 
 export interface ProductListResponse {
     /** 상품 식별용 Unique 값 */
-    id: number;
+    id: string;
     /** 사이트 식별용 코드 */
     site_code: SiteCode;
     /** 제목 */

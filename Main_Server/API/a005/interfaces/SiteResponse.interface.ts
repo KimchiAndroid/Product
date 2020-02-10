@@ -61,7 +61,7 @@ export interface SiteResponseDetail {
     item: {
         itemIdx: 0;
         type: string;
-        categoryId: string;//카테고리id ex)아이폰 검색=> 휴대폰테블릿(HAK0000) => 애플(HAK0012)
+        categoryId: string; //카테고리id ex)아이폰 검색=> 휴대폰테블릿(HAK0000) => 애플(HAK0012)
         title: string;
         media: {
             imageUrl: string;
