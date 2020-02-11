@@ -8,4 +8,4 @@ export const responseMapping = (input: SiteListResponse): ProductListResponse =>
     title: input.title,
     price: input.price,
     thumbnail: imageurl + input.url,
-});
+  });
