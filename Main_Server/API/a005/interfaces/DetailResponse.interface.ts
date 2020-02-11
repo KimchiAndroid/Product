@@ -14,11 +14,9 @@ export interface DetailResponse {
                 name: string;
             },
         ];
-        images: [
-            {
-                imageUrl: string;
-            },
-        ];
+        images: {
+            imageUrl: string;
+        }[];
         tags: string[];
         helpers: [];
         authority: {
@@ -45,10 +43,19 @@ export interface DetailResponse {
                 name: string;
                 isDeal: boolean;
             };
-            location: {
-                address: string;
-                latitude: number;
-                longitude: number;
+            location?: {
+                address?: string;
+                latitude?: number;
+                longitude?: number;
+            };
+            delivery?: {
+                deliveryMethods?: [
+                    {
+                        code?: string;
+                        name?: string;
+                    },
+                ];
+                timelag?: 1;
             };
             hasDeliveryFee: boolean;
             type: string;
@@ -69,68 +76,44 @@ export interface DetailResponse {
             linkUrl: string;
         };
         member: {
-            identity: {
-                nick: string;
-                domain: string;
+            identity?: {
+                nick?: string;
+                domain?: string;
             };
-            profile: {
-                level: number;
-                imageUrl: string;
+            profile?: {
+                level?: number;
+                imageUrl?: string;
             };
-            propensity: {
-                level: number;
+            propensity?: {
+                level?: number;
             };
-            count: {
-                item: number;
-                rating: number;
-                opinion: number;
-                buy: number;
-                sell: number;
-                review: {
-                    post: number;
-                    good: number;
-                    bad: number;
+            count?: {
+                item?: number;
+                rating?: number;
+                opinion?: number;
+                buy?: number;
+                sell?: number;
+                review?: {
+                    post?: number;
+                    good?: number;
+                    bad?: number;
                 };
             };
-            level: {
-                imageUrl: string;
+            level?: {
+                imageUrl?: string;
             };
-            reputation: {
-                score: number;
+            reputation?: {
+                score?: number;
             };
-            type: string;
-            linkUrl: string;
-            isBiz: boolean;
+            type?: string;
+            linkUrl?: string;
+            isBiz?: boolean;
         };
-        dragup: {
-            isScheduled: boolean;
+        dragup?: {
+            isScheduled?: boolean;
         };
         linkUrl: string;
         timeago: string;
         timestamp: number;
     };
-    extra: {
-        escrowHelpImageUrl: string;
-        flags: [
-            {
-                id: string;
-                name: string;
-            }[],
-        ];
-    };
-    loginPopupStatus: boolean;
-    visitCountPlus: number;
-    appDownloadStatus: boolean;
-    relationList: [
-        {
-            idx: number;
-            title: string;
-            price: number;
-            priceText: string;
-            sellMethod: string;
-            sellMethodNm: string;
-            imageUrl: string;
-            isMembership: boolean;
-        }[],
-    ];
 }

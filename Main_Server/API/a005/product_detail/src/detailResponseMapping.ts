@@ -12,13 +12,13 @@ export const detailResponseMapping = (input: DetailResponse): ProductDetailRespo
     detail: input.data.description,
     tags: {
         배송비: input.data.property.hasDeliveryFee == true ? '무료' : '별도',
-        //location: input.data.property ? input.data.property.location.address : undefined,
+        location: input.data.property.location ? input.data.property.location.address : undefined,
         isDetailHtml: false,
         상품상태: sellState(input.data.property.sellState.code),
     },
 });
 
-const sellState = (input: string) => {
+export const sellState = (input: string) => {
     if (input == 'NotUsed') return 'A';
     //새상품
     else if (input == 'AsNew') return 'B';
@@ -26,7 +26,7 @@ const sellState = (input: string) => {
     else return 'C'; //중고
 };
 
-const setDate = (input: string) => {
+export const setDate = (input: string) => {
     //헬로마켓 날짜포맷 '20. 2. 6.'
     if (input.indexOf('.') !== -1) {
         const tmp = input.split('. ');
@@ -43,12 +43,15 @@ const setDate = (input: string) => {
     //몇초전, 몇분전, 몇시간, 몇일전일 경우
     else {
         const date = new Date();
-        const ago = Number.parseInt(input.split(input)[0]);
+        const seconds = Number.parseInt(input.split('초')[0]);
+        const minutes = Number.parseInt(input.split('분')[0]);
+        const hours = Number.parseInt(input.split('시간')[0]);
+        const days = Number.parseInt(input.split('일')[0]);
 
-        if (input.indexOf('초') !== -1) date.setSeconds(date.getSeconds() - ago);
-        else if (input.indexOf('분') !== -1) date.setMinutes(date.getMinutes() - ago);
-        else if (input.indexOf('시간') !== -1) date.setHours(date.getHours() - ago);
-        else if (input.indexOf('일') !== -1) date.setDate(date.getDate() - ago);
+        if (input.indexOf('초') !== -1) date.setSeconds(date.getSeconds() - seconds);
+        else if (input.indexOf('분') !== -1) date.setMinutes(date.getMinutes() - minutes);
+        else if (input.indexOf('시간') !== -1) date.setHours(date.getHours() - hours);
+        else if (input.indexOf('일') !== -1) date.setDate(date.getDate() - days);
 
         const today = {
             year: date.getFullYear(),
@@ -61,7 +64,7 @@ const setDate = (input: string) => {
 };
 
 //월,일을 두자리수로 표현하기 위한 함수
-const comp = (date: number) => {
+export const comp = (date: number) => {
     const result = date < 10 ? '0' + date : date;
     return result;
 };
