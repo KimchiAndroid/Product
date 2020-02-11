@@ -1,7 +1,7 @@
 import { index } from '.';
 
-index({ search_word: '아이폰', page: '3' })
-    .then(value => console.log(value.length))
+index({ search_word: '아이폰', page: '1' })
+    .then(value => console.log(value))
     .catch(err => {
         throw new Error(err);
     })
