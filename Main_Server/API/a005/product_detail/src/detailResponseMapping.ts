@@ -12,8 +12,11 @@ export const detailResponseMapping = (input: DetailResponse): ProductDetailRespo
     image: input.data.images.map(value => value.imageUrl),
     detail: input.data.description,
     tags: {
-        //location: input.data.property.location.address,
-        delivery: input.data.property.hasDeliveryFee == true ? '배송비별도' : '무료',
+        배송비: input.data.property.hasDeliveryFee == true ? '무료' : '별도',
+        location: input.data.property.location.address,
+        isDetailHtml: false,
+        상품상태: 
+
     },
 });
 

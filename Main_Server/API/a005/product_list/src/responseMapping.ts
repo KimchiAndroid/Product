@@ -7,4 +7,5 @@ export const responseMapping = (input: SiteResponseDetail): ProductListResponse 
     title: input.item.title,
     price: input.item.property.price.amount,
     thumbnail: input.item.media.imageUrl,
+    isSelling: input.item.property.sellState.code == 'ForSale' ? true : false,
 });
