@@ -2,8 +2,8 @@ import { SiteResponse, SiteResponseDetail } from '../../interfaces/SiteResponse.
 import { requestService } from './request.service';
 import { responseMapping } from './responseMapping';
 
-export const scrapComponent = async (keyWord: string) => {
-    const res = await requestService(keyWord, 1);
+export const scrapComponent = async (keyWord: string, page: string) => {
+    const res = await requestService(keyWord, page);
     const product_list: SiteResponse = JSON.parse(res);
     const product_detail_list: SiteResponseDetail[] = product_list.list;
     const mapping_to_form = product_detail_list.map(responseMapping);

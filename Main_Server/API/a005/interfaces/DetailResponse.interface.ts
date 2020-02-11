@@ -131,7 +131,6 @@ export interface DetailResponse {
             sellMethodNm: string;
             imageUrl: string;
             isMembership: boolean;
-        },
-        [],
+        }[],
     ];
 }
