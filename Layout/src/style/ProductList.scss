@@ -1,72 +1,95 @@
 .product-site {
-  // overflow: hidden;
-  padding: 10px;
-  background: coral;
-  border: 1px solid #efefe1;
-  border-radius: 5px;
-  margin: 30px;
-  .product-sitename {
-    font-weight: 800;
-    font-size: 40px;
-    line-height: 40px;
-    margin: 0 0 10px 0;
-    padding: 0;
-    &:before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      background-size: cover;
-      background-image: url("../static/correct.png");
-      margin-right: 10px;
-      vertical-align: middle;
-      line-height: 40px;
-      // line-height: 40px;
-    }
-  }
-  .product-list {
-    .product-list-prev {
-    }
-    .product-list-next {
-    }
-    .product-list-items {
-      display: block;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      word-wrap: normal;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      background-color: cornsilk;
-      position: relative;
-      &::-webkit-scrollbar {
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    background: #fff;
+    margin: 0 0 30px;
+    position: relative;
+    .spinner {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
         display: none;
-      }
-      .product-list-spinning {
-        display: inline-block;
-        height: 250px;
-        // background: cornflowerblue;
-        margin-top: 0%;
-      }
-      .product-list-item {
-        display: inline-block;
-        margin: 10px;
-        border: 1px solid #efefe1;
-        border-radius: 3px;
-        width: 250px;
-        &:hover {
-          transition: linear 0.15s;
-          transform: scale(1.03);
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        // color:black;
+        &.loading {
+            display: flex;
         }
-        .product-image {
-          img {
-            width: 100%;
-          }
-        }
-        .product-name {
-        }
-        .product-price {
-        }
-      }
     }
-  }
+    .product-sitename {
+        margin: 0 0 30px 0;
+        padding: 0;
+    }
+    .product-list {
+        display: flex;
+        .product-list-prev,
+        .product-list-next {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 40px;
+            margin: 0 10px;
+            img {
+                max-width: 100%;
+            }
+        }
+        .product-list-items {
+            flex: 1;
+            display: block;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            word-wrap: normal;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            &::-webkit-scrollbar {
+                // display: none;
+            }
+            .no-item {
+                min-height: 100px;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .product-list-item {
+                display: inline-block;
+                margin: 15px;
+                border-collapse: collapse;
+                // border: 1px solid #efefe1;
+                background: white;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+                padding: 10px;
+                border-radius: 5px;
+                width: 180px;
+                &:hover {
+                    transition: linear 0.15s;
+                    transform: scale(1.03);
+                }
+                .product-image {
+                    img {
+                        width: 100%;
+                    }
+                }
+                .product-name {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    font-size: 20px;
+                    color: black;
+                    font-weight: bold;
+                }
+                .product-price {
+                    color: steelblue;
+                }
+            }
+        }
+    }
 }
