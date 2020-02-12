@@ -35,7 +35,7 @@ export const productListAPI = (data: ProductListRequest) => (
         case '005':
             return [a005_list(data)];
         default:
-            return [a000_list(data)];
+            return [a000_list(data), a005_list(data)];
     }
 };
 

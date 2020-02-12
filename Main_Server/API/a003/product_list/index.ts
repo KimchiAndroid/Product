@@ -1,6 +1,6 @@
+import { ProductListRequest } from '../Common/action/product_list';
 import { scrapSite } from './src/SearchProductList';
 
-scrapSite('노트북')
-    .then(value => console.log(value))
-    .catch(err => console.log(err))
-    .finally(() => process.exit(0));
+export const index = async (keyword: ProductListRequest) => {
+    return scrapSite(keyword).then(value => value);
+};
