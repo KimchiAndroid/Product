@@ -7,7 +7,7 @@ describe('Product List Test', () => {
     it('makeQuery function Test', () => {
         const query = queryString('test product', '2');
         expect(query).toStrictEqual({
-            keyWord: 'test product',
+            q: 'test product',
             stat_uid: '10649087',
             version: '4',
             page: '2',
@@ -20,6 +20,7 @@ describe('Product List Test', () => {
             site_code: '001',
             title: 'ProductName',
             price: 10000,
+            isSelling: true,
             thumbnail: 'ProductImage',
         });
     });
