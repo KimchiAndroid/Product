@@ -13,8 +13,8 @@ describe('product_detail Test', () => {
     });
 
     it('setDate Test', () => {
-        const date = setDate('20시간전');
-        expect(date).toStrictEqual('2020-02-10');
+        const date = setDate('02. 11.');
+        expect(date).toStrictEqual('2020-02-11');
     });
 
     it('detailResponseMapping Test', () => {
@@ -141,7 +141,7 @@ const input: DetailResponse = {
             isBiz: false,
         },
         linkUrl: 'hellomarket://hellomarket.api/item/165559454',
-        timeago: '3시간전',
+        timeago: '02. 11.',
         timestamp: 1581401653338,
     },
 };
