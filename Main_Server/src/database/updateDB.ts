@@ -4,7 +4,7 @@ import { filter_str_list } from '../product/productFilter';
 import { updateData } from './connect.service';
 
 export const updateDB = () =>
-    scheduleJob('0 0 * * * *', () => {
+    scheduleJob({ minute: 0, second: 0 }, () => {
         console.log('UPDATE');
         filter_str_list.forEach(updateSingleWord);
     });
