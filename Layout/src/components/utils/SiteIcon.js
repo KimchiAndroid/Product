@@ -16,8 +16,12 @@ class SiteIcon extends Component {
                 return "IconSellit"
             case "005":
                 return "IconHelloMarket"
+            case "main":
+                return "IconMain"
+            case "search":
+                return "IconSearch"
             default:
-                return "IconKonkuk"
+                return ""
         }
     }
     render() {
@@ -25,7 +29,7 @@ class SiteIcon extends Component {
         const siteIcon = this.selectSiteIcon(site_code)
         return (
             <>
-                <img className={cx("icon", siteIcon)} alt="" />
+                <div className={cx("icon", siteIcon)} alt="" />
             </>
         )
     }

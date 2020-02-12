@@ -1,27 +1,28 @@
-.main-search-bar-container{
+.main-search-bar-container {
     display: flex;
     margin: 70px auto;
     flex-direction: column;
     align-items: center;
-    .search-bar{
+    .search-bar {
         display: flex;
-        border:1px solid #dfe1e5;
+        background: white;
+        border: 1px solid #dfe1e5;
         border-radius: 24px;
         width: 800px;
         margin-left: 20px;
         height: 40px;
         margin-top: 70px;
-        .search-bar-input{
+        .search-bar-input {
             display: flex;
-            flex:1;
+            flex: 1;
             border: none;
             height: 30px;
             margin-left: 20px;
             margin-top: 3px;
             outline: none;
-            font-size:15px;
+            font-size: 15px;
         }
-        .search-icon{
+        .search-icon {
             align-items: center;
             width: 20px;
             height: 20px;

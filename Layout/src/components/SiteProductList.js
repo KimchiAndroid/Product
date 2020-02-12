@@ -1,46 +1,67 @@
 import React, { Component } from "react"
 import ProductListItem from "./ProductListItem"
 import axios from "axios"
-import "../style/SiteProductList.scss"
+
+import { HOST_URL } from '../common/constant';
+
 import debounce from "lodash/debounce"
+import "../style/SiteProductList.scss"
 
 class SiteProductList extends Component {
     constructor(props) {
         super(props)
-        const { main_flag } = this.props
         this.state = {
-            res: []
+            siteCode: '',
+            productItems: [],
+            page: 0,
+            loading: false
         }
-        this.getProducts(main_flag)
-        if (!main_flag) {
-            window.addEventListener("scroll", debounce(this.handleRequestScroll, 1000))
-        }
-    }
-    getProducts = async (main_flag) => {
-        let res = ""
-        if (main_flag) {
-            res = await axios.get("http://127.0.0.1:3002/Products/main")
-        } else {
-            res = await axios.get("http://127.0.0.1:3002/Products/all")
-        }
-        this.setState({ res: [...this.state.res, ...res.data] })
+        window.addEventListener("scroll", debounce(this.handleRequestScroll, 1000))
     }
     handleRequestScroll = () => {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight * 0.6) {
-            this.getProducts()
+            this.onMoreItem(this.state.siteCode)
         }
     }
-    render() {
-        const productItem = Object.values(this.state.res).map((item, index) => {
-            const { productImage, productName, productPrice, productID } = item;
-            return (
-                <ProductListItem key={index} productImage={productImage} productName={productName} productPrice={productPrice} productID={productID}></ProductListItem>
-            )
+    requestSearch = (siteCode, keyword, page) => {
+        this.setState({
+            siteCode: siteCode,
+            loading: true
         });
+        axios
+            .get(`http://${HOST_URL}/product/search?title=${keyword}&site=${siteCode}&page=${page}`)
+            .then(data => {
+                const prevState = this.state;
+                this.setState({
+                    ...prevState,
+                    productItems: [...(prevState.productItems || []), ...(data.data[0] || [])],
+                    loading: false,
+                    page,
+                });
+            });
+    };
+    componentWillMount() {
+        const { keyword, siteCode } = this.props;
+        this.setState({ keyword });
+        this.requestSearch(siteCode, keyword, 1);
+    }
+    onMoreItem = siteCode => {
+        const { keyword, page } = this.state;
+        this.requestSearch(siteCode, keyword, page + 1);
+    };
+    render() {
+        const { productItems } = this.state
         return (
             <div className="site-product-list">
                 <div className="product-list-container">
-                    {productItem}
+                    {
+                        productItems.map((item, index) => {
+                            const { thumbnail, title, price, site_code, id } = item;
+                            return (
+                                <ProductListItem key={index} site_code={site_code} thumbnail={thumbnail} title={title} price={price} id={id}></ProductListItem>
+                            )
+                        })
+                    }
                 </div>
             </div>
         )
