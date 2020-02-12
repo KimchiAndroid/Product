@@ -3,13 +3,13 @@ import { index as a000_detail } from '../../API/a000/product_detail';
 // import { index as a002_detail } from '../../API/a002/product_detail';
 // import { index as a003_detail } from '../../API/a003/product_detail';
 // import { index as a004_detail } from '../../API/a004/product_detail';
-// import { index as a005_detail } from '../../API/a005/product_detail';
+import { index as a005_detail } from '../../API/a005/product_detail';
 import { index as a000_list } from '../../API/a000/product_list';
 // import { index as a001_list } from '../../API/a001/product_list';
 // import { index as a002_list } from '../../API/a002/product_list';
 // import { index as a003_list } from '../../API/a003/product_list';
 // import { index as a004_list } from '../../API/a004/product_list';
-// import { index as a005_list } from '../../API/a005/product_list';
+import { index as a005_list } from '../../API/a005/product_list';
 import {
     ProductDetailRequest,
     ProductDetailResponse,
@@ -33,7 +33,7 @@ export const productListAPI = (data: ProductListRequest) => (
         case '004':
             return [];
         case '005':
-            return [];
+            return [a005_list(data)];
         default:
             return [a000_list(data)];
     }
@@ -52,7 +52,7 @@ export const productDetailAPI = (input: ProductDetailRequest): Promise<ProductDe
         case '004':
             return;
         case '005':
-            return;
+            return a005_detail(input);
         default:
             return;
     }
