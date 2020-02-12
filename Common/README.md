@@ -1,7 +1,7 @@
 ## 현재 버전
 
--   version : 1.2.3
--   author: bm1478
+-   version : 1.2.2
+-   author: IMRaccoon
 
 <br>
 
@@ -31,5 +31,4 @@
     -   Product Detail Request site_code 필드 추가
     -   Product List Request page 필드 추가
     -   Product Detail Request site_code optional 수정
--   v.1.2.3
-    -   Product List Response isSelling 필드 추가
+    
