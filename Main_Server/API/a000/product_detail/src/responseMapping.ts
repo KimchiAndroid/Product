@@ -22,6 +22,8 @@ export const responseMapping = ($: CheerioStatic) => (id: string) => (
     ],
     detail: $('#tabProductInfo').html(),
     tags: {
-        delivery: $('#prdcInfoColumn2 > div:nth-child(7) > div > div.col.first').text(),
+        배송비: !!$('#prdcInfoColumn2 > div:nth-child(7) > div > div.col.first').text()
+            ? '무료'
+            : '별도',
     },
 });
