@@ -14,7 +14,13 @@ describe('Product detail Test', () => {
             date: '1970-01-02',
             image: ['image'],
             detail: 'detail',
-            tags: { delivery: '무료배송', location: '서울시' },
+            tags: {
+                배송비: '무료',
+                location: '서울시',
+                isDetailHtml: false,
+                교환: '가능',
+                상품상태: 'A',
+            },
         });
     });
 });
@@ -28,5 +34,7 @@ const input_test: SiteResponseDetail = {
         product_image: 'image',
         description: 'detail',
         location: '서울시',
+        is_free_sharing: true,
+        bizseller: true,
     },
 };
