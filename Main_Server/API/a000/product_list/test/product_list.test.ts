@@ -33,6 +33,7 @@ describe('Product List Test', () => {
             title: 'ProductName',
             price: 10000,
             thumbnail: 'ProductImage100',
+            isSelling: true,
         });
     });
 });
