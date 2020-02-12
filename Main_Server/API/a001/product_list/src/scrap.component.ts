@@ -10,12 +10,6 @@ export const scrapComponent = async ({ search_word, page }: ProductListRequest) 
         qs: {
             query_string,
         },
-        // qs: {
-        //     keyWord,
-        //     stat_uid: '10649087',
-        //     version: '4',
-        //     page: 5,
-        // },
     };
     const response = await request.get(list_headers);
     const parser: parserFrame = JSON.parse(response);

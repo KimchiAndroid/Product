@@ -8,10 +8,13 @@
     width: 40px;
     height: 40px;
     align-items: center;
-    border-radius: 50%;
     border: none;
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.Icon11st, .IconBeongae, .IconDanggeun, .IconDanggeun, .IconHelloMarket, .IconJoonggo, .IconSellit{
+    border-radius: 50%;
 }
 
 .Icon11st{
@@ -39,6 +42,13 @@
     background-image: url('../static/helloMarket.jpg');
 }
 
-.IconKonkuk{
-    background-image: url('../static/konkuk.jpg');
+.IconMain{
+
+    width: 150px;
+    height: 150px;
+    background-image: url('../static/main_logo.png');
+}
+
+.IconSearch{
+    background-image: url('../static/search_logo.png');
 }

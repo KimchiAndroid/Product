@@ -4,5 +4,5 @@ export interface ProductDetailRequest {
     /** id */
     id: string;
     /** site code */
-    site_code: SiteCode;
+    site_code?: SiteCode;
 }

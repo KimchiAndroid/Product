@@ -13,7 +13,7 @@ export const scrapComponent = async (id: string) => {
     return result;
 };
 
-const makeQuery = (prdNo: string): SiteDetailRequest => ({
+export const makeQuery = (prdNo: string): SiteDetailRequest => ({
     method: 'getSellerProductDetail',
     prdNo,
 });
