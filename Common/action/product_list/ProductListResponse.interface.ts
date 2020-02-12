@@ -13,4 +13,6 @@ export interface ProductListResponse {
     isSelling: boolean;
     /** 이미지 링크 (option) */
     thumbnail?: string;
+    /** 판매 중/판매완료 체크 */
+    isSelling: boolean;
 }

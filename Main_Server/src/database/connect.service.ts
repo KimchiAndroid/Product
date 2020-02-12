@@ -14,7 +14,7 @@ export const getData = (keyWord: string) => async (siteCode?: SiteCode) => {
     // if (!!siteCode) {
     //     try {
     //         const b = connect.query(
-    //             'select * from product_list where title like ? and site_code = ?',
+    //             'select * from products where title like ? and site_code = ?',
     //             ['%' + keyWord + '%', siteCode],
     //             (err, data) => {
     //                 if (err) {
@@ -31,7 +31,7 @@ export const getData = (keyWord: string) => async (siteCode?: SiteCode) => {
     //     }
     // }
     const a = connect.query(
-        'select * from product_list where title like ?',
+        'select * from products where title like ?',
         ['%' + keyWord + '%'],
         (err, data) => {
             if (err) {
@@ -46,14 +46,17 @@ export const getData = (keyWord: string) => async (siteCode?: SiteCode) => {
 
 export const updateData = (keyword: ProductListResponse) => {
     connect.query(
-        'insert into product_list(id, site_code, title, price, thumnail) values(?, ?, ?, ?, ?) where not exists (select title from product_list where title = ?)',
+        'insert into products values(?, ?, ?, ?, ?, ?) on duplicate key \
+        update price = ?, isSelling = ?',
         [
             keyword.id,
             keyword.site_code,
             keyword.title,
             keyword.price,
             keyword.thumbnail,
-            keyword.title,
+            keyword.isSelling,
+            keyword.price,
+            keyword.isSelling
         ],
         (err, data) => {
             if (err) {

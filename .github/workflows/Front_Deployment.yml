@@ -29,4 +29,6 @@ jobs:
             git pull origin master
             
             cd Server/Docker
+            docker stop docker_front_1
+            docker rm docker_front_1
             docker-compose up -d front
