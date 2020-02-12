@@ -55,13 +55,14 @@ export interface SiteResponseDetail {
         num_comment?: string;
         user_name?: string;
         /** 날짜 */
-        update_time?: number;
+        update_time: number;
+        /** tags : delivery */
         free_shipping?: boolean;
         is_free_sharing?: boolean;
         is_adult?: boolean;
         profile_image?: string;
         /** 이미지 링크 */
-        product_image?: string;
+        product_image: string;
         bizseller?: boolean;
         checkout?: boolean;
         category_id?: string;
@@ -102,7 +103,7 @@ export interface SiteResponseDetail {
         extended_spec?: string[];
         pay_option?: { pay_type: string };
     };
-    seller_info: {
+    seller_info?: {
         uid?: string;
         user_name?: string;
         bizseller?: boolean;
