@@ -7,4 +7,5 @@ export const responseMapping = (input: SiteResponseDetail): ProductListResponse 
     title: input.ProductName[0],
     price: parseInt(input.SalePrice[0], 10),
     thumbnail: input.ProductImage100[0],
+    isSelling: true,
 });
