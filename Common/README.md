@@ -1,6 +1,6 @@
 ## 현재 버전
 
--   version : 1.3.0
+-   version : 1.3.1
 -   author: IMRaccoon
 
 <br>
@@ -35,3 +35,4 @@
         -   Front 팀 의견 반영
         -   tag 의무화 -> 전부 없을 경우 `tag: {}` 로 지정
         -   Product List 조회 시, 구매 가능 여부 추가
+    -   1: Category 제거
