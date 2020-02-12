@@ -22,7 +22,11 @@ export const responseMappingDetail = (
     image: [input.item_info.product_image],
     detail: input.item_info.description,
     tags: {
-        delivery: input.item_info.free_shipping ? '무료배송' : '배송비별도',
+        배송비: input.item_info.free_shipping == true ? '무료' : '별도',
         location: input.item_info.location,
+        isDetailHtml: false,
+        교환: input.item_info.is_free_sharing == true ? '가능' : '불가능',
+        /** 새상품 : A, 중고 : C */
+        상품상태: input.item_info.bizseller == true ? 'A' : 'C',
     },
 });
