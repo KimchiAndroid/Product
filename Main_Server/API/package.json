@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "../node_modules/.bin/jest --config ../jest.json",
         "build": "tsc"
     },
     "repository": {
@@ -19,6 +19,7 @@
         "@types/request": "^2.48.4",
         "@types/request-promise": "^4.1.45",
         "@types/xml2js": "^0.4.5",
+        "@types/jquery": "^3.3.32",
         "jest": "^24.9.0",
         "ts-jest": "^24.3.0",
         "ts-node": "^8.5.4",
@@ -27,6 +28,7 @@
     "dependencies": {
         "axios": "^0.19.2",
         "cheerio": "^1.0.0-rc.3",
+        "jquery": "^3.4.1",
         "iconv-lite": "^0.5.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.5",

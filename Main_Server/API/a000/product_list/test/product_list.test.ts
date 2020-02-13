@@ -17,22 +17,23 @@ describe('Init Test', () => {
 
 describe('Product List Test', () => {
     it('makeQuery function Test', () => {
-        const query = makeQuery('test product');
+        const query = makeQuery('test product', '2');
         expect(query).toStrictEqual({
             key: APIkey,
             apiCode: 'ProductSearch',
             keyword: 'test product',
-            pageNum: '1',
+            pageNum: '2',
         });
     });
     it('responseMapping function Test', () => {
         const output_test = responseMapping(input_test);
         expect(output_test).toEqual({
-            id: 123,
+            id: '123',
             site_code: '000',
             title: 'ProductName',
             price: 10000,
             thumbnail: 'ProductImage100',
+            isSelling: true,
         });
     });
 });

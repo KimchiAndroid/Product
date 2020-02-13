@@ -1,5 +1,11 @@
 # Product Repository
 
+## Konkuk-JJabaries Github Action 상태
+![Check & Test PR](https://github.com/Konkuk-JJabaries/Product/workflows/Check%20&%20Test%20PR/badge.svg?branch=master)
+![Back Deployment](https://github.com/Konkuk-JJabaries/Product/workflows/Back%20Deployment/badge.svg?branch=master)
+![Front Deployment](https://github.com/Konkuk-JJabaries/Product/workflows/Front%20Deployment/badge.svg?branch=master)
+
+
 실제로 개발할 때 사용할 공용 레포지토리입니다.  
 
 모든 팀의 개발 내용들은 해당 레포지토리에서 독립적인 디렉토리를 사용해서 개발할 예정입니다.  

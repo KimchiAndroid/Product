@@ -1,4 +1,4 @@
-const key_list = ['db', '11st', 'joongna'];
+const key_list = ['db', 'a000', 'a001', 'a002', 'a003', 'a004', 'a005'];
 $(document).ready(() => {
     key_list.map(key =>
         $(`#${key}_button`).on('click', e => {

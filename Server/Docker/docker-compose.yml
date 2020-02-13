@@ -7,69 +7,72 @@ services:
     ################
     super_test:
         build: ./superdocker
-        image: super:master
+        image: super:test
 
-        depends_on:
-            - db_test
-            - front_test
+        #depends_on:
+        #    - front_test
         volumes:
-            - ./superdocker/test/ExpressJS-Study:/home/api
-
+            - ~/Product/Main_Server:/home/Main_Server
         ports:
-            - "30200:3000"
+            - "30100:3002"
 
         command:
             - /bin/bash
             - -c
             - |
-                cd /home/api/API/11st
+                cd /home/Main_Server
                 npm install && npm run build
-                cd ../joongna
-                npm install && npm run build
-                cd ../../express-for-typescript
-                npm install && npm run build && npm start
-
-    db_test:
-        image: mysql:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=secure
+                npm run copy-view && npm start
 
     front_test:
         build: ./frontdocker
-        image: front:test
+        image: front:test2
 
-        #volumes:
-        #    - ./frontdocker/biccon.github.io:/home/front
+        volumes:
+            - ~/Product/Layout:/home/Layout
 
         ports:
-            - "30280:80"
+            - "30300:3000"
 
         command:
             - /bin/bash
             - -c
             - |
-                cp -r /home/front/* /usr/share/nginx/html/
-                cat /usr/share/nginx/html
-                nginx -g "daemon off;"
+                cd /home/Layout
+                npm install && npm start
+                
 
     ##################
     ##### STABLE #####
     ##################
-    api:
-        build: ./apidocker
-        image: api:master
+    super:
+        build: ./superdocker
+        image: super:stable
 
         volumes:
-            - ./apidocker/master/ExpressJS-Study:/home/api
+            - ~/Product/Main_Server:/home/Main_Server
         ports:
-            - "30001:3000"
+            - "30001:3002"
         command:
             - /bin/bash
             - -c
             - |
-                cd /home/api/API/11st
+                cd /home/Main_Server
                 npm install && npm run build
-                cd ../joongna
+                npm run copy-view && npm start
+    front:
+        build: ./frontdocker
+        image: front:stable
+
+        volumes:
+            - ~/Product/Layout:/home/Layout
+        ports:
+            - "30000:3000"
+        command:
+            - /bin/bash
+            - -c
+            - |
+                cd /home/Layout
                 npm install && npm run build
-                cd ../../express-for-typescript
-                npm install && npm run build && npm start
+                cd LIVE
+                npm install && npm run start
