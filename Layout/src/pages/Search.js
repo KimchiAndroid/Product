@@ -29,7 +29,7 @@ class Search extends Component {
     requestSearch = (siteCode, keyword, page) => {
         this.setState({ [siteCode]: { ...this.state[siteCode], loading: true } });
         axios
-            .get(`http://${HOST_URL}/product/search?title=${keyword}&site=${siteCode}&page=${page}`)
+            .get(`http://${HOST_URL}/product/search?title=${keyword}&site_code=${siteCode}&page=${page}`)
             .then(data => {
                 const prevState = this.state[siteCode];
                 this.setState({

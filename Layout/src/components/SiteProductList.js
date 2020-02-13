@@ -29,7 +29,7 @@ class SiteProductList extends Component {
             loading: true
         });
         axios
-            .get(`http://${HOST_URL}/product/search?title=${keyword}&site=${siteCode}&page=${page}`)
+            .get(`http://${HOST_URL}/product/search?title=${keyword}&site_code=${siteCode}&page=${page}`)
             .then(data => {
                 const prevState = this.state;
                 this.setState({
