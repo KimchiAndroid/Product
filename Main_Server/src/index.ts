@@ -1,12 +1,14 @@
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
-import createError from 'http-errors';
+import bodyParser = require('body-parser');
+import cors = require('cors');
+import express = require('express');
+import { NextFunction, Request, Response } from 'express';
+import createError = require('http-errors');
 import { join } from 'path';
 import checkRouter from './check';
 import productRouter from './product';
 import mainRouter from './router';
 import * as path from 'path';
+import { updateDB } from './database/updateDB';
 
 const app = express();
 app.use(bodyParser.json());
@@ -37,3 +39,6 @@ app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
     res.status(err.status || 500);
     res.sendFile(join(__dirname, '../views/error.html'));
 });
+
+// 매시간마다 DB 업데이트
+updateDB();

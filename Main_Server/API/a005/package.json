@@ -4,20 +4,38 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "start": "ts-node"
     },
     "keywords": [],
     "author": "suzn2",
     "license": "ISC",
     "dependencies": {
+        "@types/jest": "^25.1.2",
+        "jest": "^25.1.0",
         "request": "^2.88.0",
-        "request-promise": "^4.2.5"
+        "request-promise": "^4.2.5",
+        "ts-jest": "^25.2.0"
     },
     "devDependencies": {
         "@types/request": "^2.48.4",
         "@types/request-promise": "^4.1.45",
         "ts-node": "^8.6.2",
         "typescript": "^3.7.4"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        },
+        "testRegex": "\\.test\\.ts$",
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "globals": {
+            "ts-jest": {
+                "enableTsDiagnostics": true
+            }
+        }
     }
 }

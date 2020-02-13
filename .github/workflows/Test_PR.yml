@@ -1,0 +1,51 @@
+name: Check & Test PR
+
+on:
+  pull_request:
+    branches:
+      - master
+    # paths:
+    #  - 'Main_Server/**'
+      
+jobs:
+  ESLint_Check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout a Git repository at at particular version
+        uses: actions/checkout@v2
+        
+      - name: Use a Nodejs version 12.14.0
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: '12.14.0'
+          
+      - name: Run ESLint
+        run: |
+          cd Main_Server
+          npm install
+          npm run lint
+        env:
+          CI: true
+      
+  Unit_Test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout a Git repository at a particular version
+        uses: actions/checkout@v2
+        
+      - name: Setup Node.js for use with actions
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: '12.14.0'
+            
+      - name: Setup unit test environment
+        run: |
+          cd Main_Server && npm install
+          cd API && npm install
+      
+      - name: Run unit test
+        run: |
+          cd Main_Server/API
+          npm run test

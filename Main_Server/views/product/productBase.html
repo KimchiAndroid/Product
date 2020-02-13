@@ -5,15 +5,170 @@
             Product Information
         </title>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="./productBase.css" />
     </head>
     <body>
-        <p></p>
-        <form action="/product/search" method="GET">
-            <label for="title"><b>상품명 : </b></label>
-            <input type="text" placeholder="상품명을 입력하세요" name="title" required />
-
-            <button type="submit">입력</button>
-        </form>
-        <p></p>
+        <div>
+            <b>Call Every API</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A000 : 11번가</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="000" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A001 : 번개장터</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="001" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A002 : 중고나라</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="002" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A003 : 당근마켓</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="003" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A004 : 셀잇</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="004" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>A005 : 헬로마켓</b>
+            <form action="/product/search" method="GET">
+                <div>
+                    <label for="title">상품명 : </label>
+                    <input type="hidden" name="site_code" value="005" />
+                    <input type="text" placeholder="상품명을 입력하세요" name="title" required />
+                </div>
+                <div>
+                    <label for="page">페이지 : </label>
+                    <input
+                        type="text"
+                        placeholder="1부터 원하는 숫자를 입력하세요"
+                        name="page"
+                        value="1"
+                        required
+                    />
+                    <button type="submit">입력</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <b>Product Detail</b>
+            <form action="/product/detail" method="GET">
+                <label for="id">id : </label>
+                <input type="text" placeholder="ID 값을 입력하세요" name="id" required />
+                <select name="site_code">
+                    <option value="000">11번가</option>
+                    <option value="001">번개장터</option>
+                    <option value="002">중고나라</option>
+                    <option value="003">당근마켓</option>
+                    <option value="004">셀잇</option>
+                    <option value="005">헬로마켓</option>
+                </select>
+                <button type="submit">입력</button>
+            </form>
+        </div>
     </body>
 </html>

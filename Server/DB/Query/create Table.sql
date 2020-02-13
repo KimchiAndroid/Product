@@ -1,17 +1,18 @@
+-- create database kj_product;
 show databases;
-create database kj_product;
 use kj_product;
 show tables;
--- drop table product_list;
+-- drop table products;
 
-create table product_list (
-	id integer not null auto_increment,
-    site_code varchar(10) not null,
+create table products (
+	id varchar(20) not null,
+    site_code varchar(5) not null,
     title varchar(100) not null,
     price integer not null,
     thumnail varchar(200),
-    primary key(id)
+    isSelling boolean,
+    primary key(id, site_code)
 );
 
-alter table product_list convert to charset utf8;
-select * from product_list;
+alter table products convert to charset utf8;
+select * from products;

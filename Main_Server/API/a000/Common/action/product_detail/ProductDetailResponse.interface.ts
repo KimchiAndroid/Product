@@ -1,9 +1,9 @@
 import { SiteCode } from '../../site_code';
-import { ProductDetailTags } from '../product_detail';
+import { ProductDetailTags } from '.';
 
 export interface ProductDetailResponse {
     /** 상품 식별용 Unique 값 */
-    id: number;
+    id: string;
     /** 사이트 식별용 코드 */
     site_code: SiteCode;
     /** 해당 상품의 실제 사이트로 이동하는 url */
