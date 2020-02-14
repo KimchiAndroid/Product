@@ -43,6 +43,7 @@ export const scrapComponent = async ({ search_word, page }: ProductListRequest) 
   scrapComponent({ search_word : '모니터', page : '1' })
     .then(value => {
       const response = JSON.parse(value);
+      console.log(response);
       const parser: parserFrame = response.data;
       const subArray : ListResult = response.data.forEach(function(element: any) {
         const test =  responseMapping(element);
