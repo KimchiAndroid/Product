@@ -23,8 +23,8 @@ export const makejson = (keyword: string, pageNum: string): SiteListRequest => (
     //categorySeqList: [],
     productSectionType: 0,
   },
-  isSearchSaved: 1,
-  searchQuantity: 16,
+  isSearchSaved: 0,
+  searchQuantity: Number(pageNum),
   searchWord: keyword,
   sort: { date: 0, order: 0, price: 0 },
   startIndex: 0,
@@ -38,9 +38,8 @@ export const scrapComponent = async ({ search_word, page }: ProductListRequest) 
     };
     return rp.post('https://api.joongna.com/elastic/type2/2', options);
 };
-
 //export const mapping = async ({ search_word, page }: ProductListRequest) => {
-  scrapComponent({ search_word : '모니터', page : '1' })
+  scrapComponent({ search_word : '모니터', page : '60' })
     .then(value => {
       const response = JSON.parse(value);
       console.log(response);

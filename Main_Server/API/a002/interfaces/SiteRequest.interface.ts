@@ -5,12 +5,12 @@ export interface SiteListRequest {
   filter: {
     categoryDepth: number;
     categorySeq: number;
-    color: '';
+    color: string;
     condition: {
       options: { flawedYn: number, fullPackageYn: number, limitedEditionYn: number };
       productCondition: number;
     };
-    locations: [{ locationCode: '', locationType: number }];
+    locations: [{ locationCode: string, locationType: number }];
     maxPrice: number;
     minPrice: number;
     platformType: number;
