@@ -9,6 +9,8 @@ export interface ProductListResponse {
     title: string;
     /** 가격 */
     price: number;
+    /** 구매 가능 여부 */
+    isSelling: boolean;
     /** 이미지 링크 (option) */
     thumbnail?: string;
 }
