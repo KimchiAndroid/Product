@@ -1,8 +1,9 @@
 import { index } from '.';
 
-index({ id: '2103167376' })
-    .then(value => console.dir(value, { depth: null }))
+index({id : '18543108'})
+.then(value => console.log(value))
     .catch(err => {
+        console.log(err);
         throw new Error(err);
     })
     .finally(() => process.exit(0));

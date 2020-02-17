@@ -27,10 +27,6 @@ export interface SiteListRequest {
   sort: { date: number, order: number, price: number };
   startIndex: number;
 }
-
-export interface parserFrame {
-  list: SiteListResponse[];
-}
 export interface ListResult {
   list: ProductListResponse[];
 }

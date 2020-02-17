@@ -2,7 +2,6 @@ import { SiteDetailResponse } from '../../interfaces/SiteResponse.interface';
 import { ProductDetailResponse } from '../../Common/action';
 
 export const responseMapping = (input: SiteDetailResponse, url: string[] ): ProductDetailResponse => ({
-    
     id: String(input.productSeq),
     site_code: '002',
     origin_url: 'https://m.joongna.com/product-detail/' +  String(input.productSeq),

@@ -1,7 +1,7 @@
 import * as rp from 'request-promise';
 import { responseMapping } from './responseMapping';
 import { ProductListRequest } from '../../Common';
-import { SiteListRequest, parserFrame, ListResult } from '../../interfaces/SiteRequest.interface';
+import { SiteListRequest, ListResult } from '../../interfaces/SiteRequest.interface';
 import { APISite } from '../../option';
 
 const scrapComponent = ( search_word: string, page: string ) => {
