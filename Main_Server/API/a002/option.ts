@@ -1,4 +1,4 @@
-/** 중고나라 Site */
-export const Siteurl = 'https://m.joongna.com/';
+/** 중고나라 API Site */
+export const APISite = 'https://api.joongna.com/elastic/type2/2';
 /** 이미지 파일 base link */
 export const imageurl = 'https://img-joonggonara.akamaized.net';
