@@ -17,7 +17,7 @@ class Detail extends Component {
         super(props);
         this.state = {
             "site_code": "000",
-            "image": [one, two, three],
+            "image": [one, two, three, one, two],
             "title": "아이폰 팝니다 구라야 팔까?? @@@",
             "price": "900000",
             "origin_url": "https://naver.com",
