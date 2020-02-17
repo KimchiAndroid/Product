@@ -24,7 +24,7 @@ export const mapping = async ({ search_word, page }: ProductListRequest) => {
     })
 };
 
-export const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
+const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
   filter: {
     categoryDepth: 0,
     categorySeq: 0,

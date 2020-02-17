@@ -1,20 +1,19 @@
 import * as rp from 'request-promise';
-import { SiteDetailResponse } from '../../interfaces/SiteResponse.interface';
-//import { requestService } from '../../product_list/src/request.service';
 import { responseMapping } from './responseMapping';
+import { detailurl, imageurl } from '../../option';
 
-export const scrapComponent = async ( id: string ) => {
+export const scrapComponent = ( id: string ) => {
     const options = {
       headers:{'Content-Type':'application/json;charset=UTF-8' }, 
   };
-  return rp.get('https://api.joongna.com/product/'+id , options);
+  return rp.get( detailurl+id , options);
 };
 
 scrapComponent('18543108') //18543108 장소있음 17312106 없음 15607362배송비있음
 .then(value => {
     const response = JSON.parse(value); 
     const testt = response.data.media.map((item: any, index: any, array: any) => {
-        return 'https://img-joonggonara.akamaized.net'+item.mediaUrl;
+        return imageurl+item.mediaUrl;
     });
     //console.log(test);
     const test =  responseMapping(response.data, testt );
