@@ -2,6 +2,27 @@ import * as rp from 'request-promise';
 import { responseMapping } from './responseMapping';
 import { ProductListRequest } from '../../Common';
 import { SiteListRequest, parserFrame, ListResult } from '../../interfaces/SiteRequest.interface';
+import { APISite } from '../../option';
+
+const scrapComponent = ( search_word: string, page: string ) => {
+      const options = {
+        body:JSON.stringify(makejson( search_word, page )),
+        headers:{'Content-Type':'application/json;charset=UTF-8'
+        }, 
+    };
+    return rp.post(APISite, options);
+};
+
+export const mapping = async ({ search_word, page }: ProductListRequest) => {
+  return scrapComponent( search_word, page )
+    .then(value => {
+      const response = JSON.parse(value);
+      const mappingArray : ListResult = response.data.map(function(element: any) {
+        return responseMapping(element);
+      });
+      return mappingArray;
+    })
+};
 
 export const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
   filter: {
@@ -29,29 +50,3 @@ export const makejson = (keyword: string, pageNum: string): SiteListRequest => (
   sort: { date: 0, order: 0, price: 0 },
   startIndex: 0,
 });
-
-export const scrapComponent = async ({ search_word, page }: ProductListRequest) => {
-      const options = {
-        body:JSON.stringify(makejson( search_word, page )),
-        headers:{'Content-Type':'application/json;charset=UTF-8'
-        }, 
-    };
-    return rp.post('https://api.joongna.com/elastic/type2/2', options);
-};
-//export const mapping = async ({ search_word, page }: ProductListRequest) => {
-  scrapComponent({ search_word : '모니터', page : '60' })
-    .then(value => {
-      const response = JSON.parse(value);
-      console.log(response);
-      const parser: parserFrame = response.data;
-      const subArray : ListResult = response.data.forEach(function(element: any) {
-        const test =  responseMapping(element);
-        console.log(test);
-      });
-    })
-    .catch(err => {
-        console.log(err);
-        throw new Error(err);
-    })
-    .finally(() => process.exit(0));
- // };
