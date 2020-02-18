@@ -7,5 +7,6 @@ export const responseMapping = (input: SiteListResponse): ProductListResponse =>
     site_code: '002',
     title: input.title,
     price: input.price,
+    isSelling: true,
     thumbnail: imageurl + input.url,
   });

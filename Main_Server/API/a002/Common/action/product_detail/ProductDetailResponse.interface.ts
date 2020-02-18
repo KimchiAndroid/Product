@@ -25,5 +25,5 @@ export interface ProductDetailResponse {
      * + 배송 방식 정보
      * + 판매 장소
      */
-    tags?: ProductDetailTags;
+    tags: ProductDetailTags;
 }

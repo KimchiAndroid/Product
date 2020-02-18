@@ -17,6 +17,7 @@ export const mapping = async ({ search_word, page }: ProductListRequest) => {
   return scrapComponent( search_word, page )
     .then(value => {
       const response = JSON.parse(value);
+      console.log(response);
       const mappingArray : ListResult = response.data.map(function(element: any) {
         return responseMapping(element);
       });
@@ -50,3 +51,15 @@ const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
   sort: { date: 0, order: 0, price: 0 },
   startIndex: 0,
 });
+
+
+
+
+
+mapping({ search_word: '모니터', page: '60' })
+    .then(value => console.log(value))
+    .catch(err => {
+        console.log(err);
+        throw new Error(err);
+    })
+    .finally(() => process.exit(0));
