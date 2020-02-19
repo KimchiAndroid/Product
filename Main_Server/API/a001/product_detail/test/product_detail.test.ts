@@ -8,7 +8,7 @@ describe('Product detail Test', () => {
         expect(output_test).toEqual<ProductDetailResponse>({
             id: '123',
             site_code: '001',
-            origin_url: 'https://api.bunjang.co.kr/api/1/product/123/detail_info.json',
+            origin_url: 'https://m.bunjang.co.kr/products/123',
             title: 'ProductName',
             price: 10000,
             date: '2020-02-11',
