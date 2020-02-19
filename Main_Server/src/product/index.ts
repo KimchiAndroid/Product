@@ -15,15 +15,15 @@ productRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 productRouter.get('/search', async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.query.title || !req.query.page) {
+    if (!req.query.title) {
         return res.status(500).send('Error!! There is no Query String');
     }
 
     try {
-        const result = await productListAPI({ page: req.query.page, search_word: req.query.title })(
+        const page = req.query.page ?? '';
+        const result = await productListAPI({ page, search_word: req.query.title })(
             req.query.site_code,
         )[0];
-
         return res.status(200).json(result);
     } catch (err) {
         throw new Error(err);
