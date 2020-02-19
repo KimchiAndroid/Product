@@ -5,12 +5,13 @@ import { ProductListResponse } from '../../Common';
 
 describe('Product List Test', () => {
     it('makeQuery function Test', () => {
-        const query = queryString('test product', '2');
+        const query = queryString('test product', '2', 60);
         expect(query).toStrictEqual({
             q: 'test product',
             stat_uid: '10649087',
             version: '4',
             page: '2',
+            n: 60,
         });
     });
     it('responseMapping function Test', () => {
