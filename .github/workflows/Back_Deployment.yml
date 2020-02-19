@@ -1,24 +1,39 @@
+# name: workflow의 이름을 정의
 name: Back Deployment
 
+# on: workflow가 어떤 조건에서 실행 될지 정의
 on:
+  # pull request 일 경우 실행
   pull_request:
+    # pull request가 어떤 상태일 때 실행 될 지 정의
     types:
       - closed
+    # 어떤 branch에서 발생한 것인지?
+    # 반대로 branch-ignore도 있음.
     branches:
       - master
+    # 어느 특정 경로의 파일이 변경 되었을 때 실행
     paths:
       - 'Main_Server/**'
 
+# jobs: workflow에 정의 되어 있는 job들
 jobs:
+  # job들의 이름
   Back_Deployment:
+    # job이 구동되는 환경
+    # docker image와 같은 역할을 한다고 보면 됨.
+    # ubuntu 말고 다른 것도 있음.
     runs-on: ubuntu-latest
     # Run only on merged pull requests
     if: |
       github.event.pull_request.merged && 
       github.event.pull_request.merge_commit_sha != null
       
+    # step: job안에서 행해지는 명령어들의 집합
     steps:
+      # name: name으로 현재 실행할 명령들에 이름을 부여할 수 있음.
       - name: executing remote ssh commands using ssh key
+        # uses: github marketplace에서 개발자들이 제작한 action들을 사용 
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
