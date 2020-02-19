@@ -6,7 +6,9 @@ export interface SiteRequest {
     stat_uid: string;
     version: string;
     page: string;
+    n: number;
 }
 export interface parserFrame {
-    list: SiteResponseList[];
+    list?: SiteResponseList[];
+    num_found?: number;
 }

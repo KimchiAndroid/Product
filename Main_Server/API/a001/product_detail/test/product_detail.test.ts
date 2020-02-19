@@ -11,7 +11,7 @@ describe('Product detail Test', () => {
             origin_url: 'https://api.bunjang.co.kr/api/1/product/123/detail_info.json',
             title: 'ProductName',
             price: 10000,
-            date: '1970-01-02',
+            date: '2020-02-11',
             image: ['image'],
             detail: 'detail',
             tags: {
@@ -29,7 +29,7 @@ const input_test: SiteResponseDetail = {
     item_info: {
         name: 'ProductName',
         price: '10000',
-        update_time: 123432,
+        update_time: 1581425055,
         free_shipping: true,
         product_image: 'image',
         description: 'detail',

@@ -1,10 +1,12 @@
-import { SiteResponseDetail } from '../../interfaces/SiteResponse.interface';
+import { SiteListResponse } from '../../interfaces/SiteResponse.interface';
 import { ProductListResponse } from '../../Common/action';
+import { imageurl } from '../../option';
 
-export const responseMapping = (input: SiteResponseDetail): ProductListResponse => ({
-    id: parseInt(input.ProductCode[0], 10),
+export const responseMapping = (input: SiteListResponse): ProductListResponse => ({
+    id: String(input.seq),
     site_code: '002',
-    title: input.ProductName[0],
-    price: parseInt(input.ProductPrice[0], 10),
-    thumbnail: input.ProductImage[0],
-});
+    title: input.title,
+    price: input.price,
+    isSelling: true,
+    thumbnail: imageurl + input.url,
+  });

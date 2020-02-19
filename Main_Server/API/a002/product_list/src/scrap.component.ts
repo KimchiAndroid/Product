@@ -1,60 +1,65 @@
 import * as rp from 'request-promise';
-import * as cheerio from 'cheerio';
-import { basesiteurl, cafeurl } from '../../option';
-import { SiteResponse, SiteResponseDetail, SiteResponseDetailOne } from '../../interfaces/SiteResponse.interface';
 import { responseMapping } from './responseMapping';
-import { SiteRequest } from '../../interfaces/SiteRequest.interface';
+import { ProductListRequest } from '../../Common';
+import { SiteListRequest, ListResult } from '../../interfaces/SiteRequest.interface';
+import { APISite } from '../../option';
 
-  const makeqs= (keyword : string )=> ({
-    'search.query' : keyword, 
-    'search.menuid' : 0,
-    'search.searchBy' : 0,
-    'search.sortBy' : 'date',
-    'search.clubid' : '10050146', //중고나라id
-    'search.option' : 0,
-    'search.defaultValue' : 1,
-  });
-  export const scrapComponent = async (keyword : string ) => {
-
-    //const response = await rp.get("https://openapi.naver.com/v1/search/cafearticle.json");
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
-    $.getJSON(requestURL,function(data){
-      const items = data.item.items;
-          console.log(items);
-    });
-
-   /*
-    //const siteurl = await rp("https://m.cafe.naver.com/ArticleAllListAjax.nhn?search.clubid=10050146&search.boardtype=L&search.questionTab=A&search.totalCount=201&search.page=2");
-    const qs = Object.entries(makeqs(keyword)).map(e => e.join('=')).join('&');
-    const queryurl = encodeURI(basesiteurl+qs);
-    console.log(queryurl);
-
-    const siteurl = await rp(queryurl);
-    const $ = cheerio.load(siteurl);
-    const titles = $('.search_list .tit h3')
-        .map((index, element) => {
-            return $(element).text();
-        })
-        .toArray();
-    //console.log(titles);
-
-    const url = $('.search_list .list_tit a')
-        .map((index, element) => {
-            return cafeurl+$(element).attr("href");
-        })
-        .toArray();
-​    //console.log(url);
-
-    //const product_detail_list: SiteResponseDetail[] = 
-    //product_list.ProductSearchResponse.Products[0].Product;
-    //return mapping_to_form;
-*/
+const scrapComponent = ( search_word: string, page: string ) => {
+      const options = {
+        body:JSON.stringify(makejson( search_word, page )),
+        headers:{'Content-Type':'application/json;charset=UTF-8'
+        }, 
+    };
+    return rp.post(APISite, options);
 };
 
-  interface ProductlistRequest {
-    id: number;
-    site_code : '002';
-    title: string;
-    price: number;
-    thumbnail?: string;
-  }
+export const mapping = async ({ search_word, page }: ProductListRequest) => {
+  return scrapComponent( search_word, page )
+    .then(value => {
+      const response = JSON.parse(value);
+      console.log(response);
+      const mappingArray : ListResult = response.data.map(function(element: any) {
+        return responseMapping(element);
+      });
+      return mappingArray;
+    })
+};
+
+const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
+  filter: {
+    categoryDepth: 0,
+    categorySeq: 0,
+    color: '',
+    condition: {
+      options: { flawedYn: 0, fullPackageYn: 0, limitedEditionYn: 0 },
+      productCondition: -1,
+    },
+    locations: [{ locationCode: '', locationType: -1 }],
+    maxPrice: 0,
+    minPrice: 0,
+    platformType: 1,
+    preferredTrade: 0,
+    sortEndDate: '',
+    sortStartDate: '',
+    state: -1,
+    //categorySeqList: [],
+    productSectionType: 0,
+  },
+  isSearchSaved: 0,
+  searchQuantity: Number(pageNum),
+  searchWord: keyword,
+  sort: { date: 0, order: 0, price: 0 },
+  startIndex: 0,
+});
+
+
+
+
+
+mapping({ search_word: '모니터', page: '60' })
+    .then(value => console.log(value))
+    .catch(err => {
+        console.log(err);
+        throw new Error(err);
+    })
+    .finally(() => process.exit(0));
