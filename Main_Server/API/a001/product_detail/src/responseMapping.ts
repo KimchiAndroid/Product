@@ -22,7 +22,7 @@ export const responseMappingDetail = (
 ): ProductDetailResponse => ({
     id: pid,
     site_code: '001',
-    origin_url: `https://api.bunjang.co.kr/api/1/product/${pid}/detail_info.json`,
+    origin_url: `https://m.bunjang.co.kr/products/${pid}`,
     title: input.item_info.name,
     price: parseInt(input.item_info.price, 10) || -1,
     date: makeDate(input.item_info.update_time * 1000),
