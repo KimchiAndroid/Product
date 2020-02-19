@@ -8,7 +8,7 @@ import { index as a000_list } from '../../API/a000/product_list';
 import { index as a001_list } from '../../API/a001/product_list';
 import { index as a002_list } from '../../API/a002/product_list';
 // import { index as a003_list } from '../../API/a003/product_list';
-// import { index as a004_list } from '../../API/a004/product_list';
+import { index as a004_list } from '../../API/a004/product_list';
 import { index as a005_list } from '../../API/a005/product_list';
 import {
     ProductDetailRequest,
@@ -31,11 +31,11 @@ export const productListAPI = (data: ProductListRequest) => (
         case '003':
             return [];
         case '004':
-            return [];
+            return [a004_list(data)];
         case '005':
             return [a005_list(data)];
         default:
-            return [a000_list(data), a005_list(data)];
+            return;
     }
 };
 
