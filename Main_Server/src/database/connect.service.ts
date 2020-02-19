@@ -1,10 +1,6 @@
-import * as mysql from 'mysql';
-import { mysql_account } from '../mysql_account';
 import { ProductListResponse } from '../../Common/action/product_list/ProductListResponse.interface';
 import { SiteCode } from '../../Common/site_code/SiteCode.type';
-
-const connect = mysql.createConnection(mysql_account);
-connect.connect();
+import { connect } from '../index';
 
 export const getData = (keyWord: string) => (siteCode: SiteCode) => async (page: string) => {
     // 50개 제한 걸려있어야함 page 수에 따라 나눠지는 거 필요함
