@@ -7,6 +7,7 @@ export interface SiteResponse {
     product_id: number;
     /** https://www.withsellit.com 뒤에 붙이면 바로 detail */
     url: string;
+    ks_message: string;
     prices: {
         // 원래 올린 가격
         original_price: null | number;
