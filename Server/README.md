@@ -2,6 +2,11 @@
 
 Server & Docker & AWS & DB Team 폴더입니다.
 
+# Developer
+## - SANG JAE  KIM [s5kywa1k3r] (hestarium@hotmail.com) (팀장)
+## - Jong Bin  Lee [EmptyPaper] (moist8565@naver.com)
+## - Beom Seok Cho [bm1478]     (bm1478@naver.com)
+
 <br>
 
 ## Folder 규칙
