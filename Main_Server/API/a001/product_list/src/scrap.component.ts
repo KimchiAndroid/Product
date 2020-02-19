@@ -66,10 +66,3 @@ export const queryString = (q: string, page: string, n: number): SiteRequest => 
     page,
     n,
 });
-
-/** https://api.bunjang.co.kr/api/1/find_v2.json?q=%EB%A7%88%EC%9A%B0%EC%8A%A4
- * https://api.bunjang.co.kr/api/1/find_v2.json?q=%EB%A7%88%EC%9A%B0%EC%8A%A4&order=date&page=0&request_id=2020213140918&stat_uid=10649087&stat_device=w&n=100&stat_category_required=1&req_ref=search&version=4
- * https://api.bunjang.co.kr/api/1/find_v2.json?q=%EB%A7%88%EC%9A%B0%EC%8A%A4&n=100
- * 위에꺼는 100개씩나옴
- * num_found : 총 개수
- */
