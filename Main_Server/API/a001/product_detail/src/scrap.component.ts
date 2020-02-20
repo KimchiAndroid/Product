@@ -13,6 +13,5 @@ export const scrapComponent = async (pid: string) => {
     const response = await request.get(detail_headers);
     const parser: SiteResponseDetail = JSON.parse(response);
     const content = responseMappingDetail(parser, pid);
-    //console.dir(content, { depth: 5 });
     return content;
 };
