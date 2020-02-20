@@ -9,6 +9,8 @@ import productRouter from './product';
 import mainRouter from './router';
 import * as path from 'path';
 import { updateDB } from './database/updateDB';
+import * as mysql from 'mysql';
+import { mysql_account } from './mysql_account';
 
 const app = express();
 app.use(bodyParser.json());
@@ -39,6 +41,10 @@ app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
     res.status(err.status || 500);
     res.sendFile(join(__dirname, '../views/error.html'));
 });
+
+// mysql connection
+export const connect = mysql.createConnection(mysql_account);
+connect.connect();
 
 // 매시간마다 DB 업데이트
 updateDB();

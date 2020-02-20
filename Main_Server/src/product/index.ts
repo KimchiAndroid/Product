@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import * as path from 'path';
-import { productDetailAPI } from './callApp.service';
+import { productDetailAPI, productListAPI } from './callApp.service';
 import { isAlreadyinDB, addFilterList } from './productFilter';
 import { getData } from '../database/connect.service';
 
@@ -15,21 +15,27 @@ productRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 productRouter.get('/search', async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.query.title || !req.query.page) {
+    if (!req.query.title) {
         return res.status(500).send('Error!! There is no Query String');
     }
 
     try {
-        if (!(await isAlreadyinDB(req.query.title))) {
-            addFilterList(req.query.title);
-        }
-        return res
-            .status(200)
-            .json(await getData(req.query.title)(req.query.site_code)(req.query.page));
+        const page = req.query.page ?? '';
+        const result = await productListAPI({ page, search_word: req.query.title })(
+            req.query.site_code,
+        )[0];
+        return res.status(200).json(result);
     } catch (err) {
         throw new Error(err);
     }
 });
+
+// if (!(await isAlreadyinDB(req.query.title))) {
+//     addFilterList(req.query.title);
+// }
+// return res
+//     .status(200)
+//     .json(await getData(req.query.title)(req.query.site_code)(req.query.page));
 
 productRouter.get('/detail', async (req: Request, res: Response, next: NextFunction) => {
     if (!req.query.id || typeof req.query.id !== 'string') {

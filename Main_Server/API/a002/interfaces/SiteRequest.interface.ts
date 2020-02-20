@@ -1,8 +1,30 @@
-export interface SiteRequest {
-  /** OpenAPI 가입 시 발급받는 32자리 문자 Key */
-  key: string;
-  /** OpenAPI 서비스 코드 → 상품검색 : ProductSearch */
-  apiCode: string;
-  /** 검색 요청 값 */
-  keyword: string;
+import { ProductListResponse } from '../Common/action';
+
+export interface SiteListRequest {
+    filter: {
+        categoryDepth: number;
+        categorySeq: number;
+        color: string;
+        condition: {
+            options: { flawedYn: number; fullPackageYn: number; limitedEditionYn: number };
+            productCondition: number;
+        };
+        locations?: [{ locationCode: string; locationType: number }];
+        maxPrice: number;
+        minPrice: number;
+        platformType: number;
+        preferredTrade: number;
+        sortEndDate: string;
+        sortStartDate: string;
+        state: number;
+        productSectionType: number;
+    };
+    isSearchSaved: number;
+    searchQuantity?: number;
+    searchWord: string;
+    sort: { date: number; order: number; price: number };
+    startIndex?: number;
+}
+export interface ListResult {
+    list: ProductListResponse[];
 }
