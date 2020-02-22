@@ -26,16 +26,17 @@ class Search extends Component {
             return { ...acc, [siteCode]: { loading: false, page: 0, productItems: [] } };
         }, {});
     }
-    requestSearch = (siteCode, keyword, page) => {
+    requestSearch (siteCode, keyword, page){
         this.setState({ [siteCode]: { ...this.state[siteCode], loading: true } });
         axios
-            .get(`http://${HOST_URL}/product/search?title=${keyword}&site=${siteCode}&page=${page}`)
+            .get(`http://${HOST_URL}/product/search?title=${keyword}&site_code=${siteCode}&page=${page}`)
             .then(data => {
                 const prevState = this.state[siteCode];
+
                 this.setState({
                     [siteCode]: {
                         ...prevState,
-                        productItems: [...(prevState.productItems || []), ...(data.data[0] || [])],
+                        productItems: [...(prevState.productItems || []), ...(data.data || [])],
                         loading: false,
                         page,
                     },

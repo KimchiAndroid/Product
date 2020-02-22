@@ -1,40 +1,42 @@
-import React, { Component } from "react"
-import ProductListItem from "./ProductListItem"
-import axios from "axios"
+import React, { Component } from 'react';
+import ProductListItem from './ProductListItem';
+import axios from 'axios';
 
 import { HOST_URL } from '../common/constant';
 
-import debounce from "lodash/debounce"
-import "../style/SiteProductList.scss"
+import debounce from 'lodash/debounce';
+import '../style/SiteProductList.scss';
 
 class SiteProductList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             siteCode: '',
             productItems: [],
             page: 0,
-            loading: false
-        }
-        window.addEventListener("scroll", debounce(this.handleRequestScroll, 1000))
+            loading: false,
+        };
+        window.addEventListener('scroll', debounce(this.handleRequestScroll, 1000));
     }
     handleRequestScroll = () => {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight * 0.6) {
-            this.onMoreItem(this.state.siteCode)
+            this.onMoreItem(this.state.siteCode);
         }
-    }
+    };
     requestSearch = (siteCode, keyword, page) => {
         this.setState({
             siteCode: siteCode,
-            loading: true
+            loading: true,
         });
         axios
-            .get(`http://${HOST_URL}/product/search?title=${keyword}&site=${siteCode}&page=${page}`)
+            .get(
+                `http://${HOST_URL}/product/search?title=${keyword}&site_code=${siteCode}&page=${page}`,
+            )
             .then(data => {
                 const prevState = this.state;
                 this.setState({
                     ...prevState,
-                    productItems: [...(prevState.productItems || []), ...(data.data[0] || [])],
+                    productItems: [...(prevState.productItems || []), ...(data.data || [])],
                     loading: false,
                     page,
                 });
@@ -50,21 +52,26 @@ class SiteProductList extends Component {
         this.requestSearch(siteCode, keyword, page + 1);
     };
     render() {
-        const { productItems } = this.state
+        const { productItems } = this.state;
         return (
             <div className="site-product-list">
                 <div className="product-list-container">
-                    {
-                        productItems.map((item, index) => {
-                            const { thumbnail, title, price, site_code, id } = item;
-                            return (
-                                <ProductListItem key={index} site_code={site_code} thumbnail={thumbnail} title={title} price={price} id={id}></ProductListItem>
-                            )
-                        })
-                    }
+                    {productItems.map((item, index) => {
+                        const { thumbnail, title, price, site_code, id } = item;
+                        return (
+                            <ProductListItem
+                                key={index}
+                                site_code={site_code}
+                                thumbnail={thumbnail}
+                                title={title}
+                                price={price}
+                                id={id}
+                            ></ProductListItem>
+                        );
+                    })}
                 </div>
             </div>
-        )
+        );
     }
 }
 
