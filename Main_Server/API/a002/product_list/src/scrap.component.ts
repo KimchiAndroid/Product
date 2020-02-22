@@ -1,60 +1,72 @@
 import * as rp from 'request-promise';
-import * as cheerio from 'cheerio';
-import { basesiteurl, cafeurl } from '../../option';
-import { SiteResponse, SiteResponseDetail, SiteResponseDetailOne } from '../../interfaces/SiteResponse.interface';
+import { ProductListRequest, ProductListResponse } from '../../Common';
+import { SiteListRequest } from '../../interfaces/SiteRequest.interface';
+import { APISite } from '../../option';
 import { responseMapping } from './responseMapping';
-import { SiteRequest } from '../../interfaces/SiteRequest.interface';
+import { SiteListResponse } from '../../interfaces/SiteResponse.interface';
 
-  const makeqs= (keyword : string )=> ({
-    'search.query' : keyword, 
-    'search.menuid' : 0,
-    'search.searchBy' : 0,
-    'search.sortBy' : 'date',
-    'search.clubid' : '10050146', //중고나라id
-    'search.option' : 0,
-    'search.defaultValue' : 1,
-  });
-  export const scrapComponent = async (keyword : string ) => {
-
-    //const response = await rp.get("https://openapi.naver.com/v1/search/cafearticle.json");
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
-    $.getJSON(requestURL,function(data){
-      const items = data.item.items;
-          console.log(items);
-    });
-
-   /*
-    //const siteurl = await rp("https://m.cafe.naver.com/ArticleAllListAjax.nhn?search.clubid=10050146&search.boardtype=L&search.questionTab=A&search.totalCount=201&search.page=2");
-    const qs = Object.entries(makeqs(keyword)).map(e => e.join('=')).join('&');
-    const queryurl = encodeURI(basesiteurl+qs);
-    console.log(queryurl);
-
-    const siteurl = await rp(queryurl);
-    const $ = cheerio.load(siteurl);
-    const titles = $('.search_list .tit h3')
-        .map((index, element) => {
-            return $(element).text();
-        })
-        .toArray();
-    //console.log(titles);
-
-    const url = $('.search_list .list_tit a')
-        .map((index, element) => {
-            return cafeurl+$(element).attr("href");
-        })
-        .toArray();
-​    //console.log(url);
-
-    //const product_detail_list: SiteResponseDetail[] = 
-    //product_list.ProductSearchResponse.Products[0].Product;
-    //return mapping_to_form;
-*/
+const scrapComponent = async (search_word: string, page: string): Promise<string> => {
+    return rp.post(APISite, requestOption(search_word, page));
 };
 
-  interface ProductlistRequest {
-    id: number;
-    site_code : '002';
-    title: string;
-    price: number;
-    thumbnail?: string;
-  }
+const requestOption = (search_word: string, page: string) => ({
+    body: JSON.stringify(makejson(search_word, page)),
+    headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+});
+
+const scrapAllComponent = async (search_word: string): Promise<string[]> => {
+    const result = await rp.post(APISite, requestOption(search_word, '1'));
+    const tempResult: { data: SiteListResponse[] } = JSON.parse(result);
+    const count = tempResult.data[0].totalCnt < 10000 ? tempResult.data[0].totalCnt : 10000;
+    const count_array = Array(Math.floor(count / 60)).fill('');
+
+    const requestArray = count_array.map((_, index) => {
+        return rp.post(APISite, requestOption(search_word, String(index + 1)));
+    });
+    return Promise.all(requestArray);
+};
+
+export const mapping = async ({ search_word, page }: ProductListRequest) => {
+    const mappingFunction = (value: string) => {
+        const response = JSON.parse(value);
+        const mappingArray: ProductListResponse[] = response.data.map((element: SiteListResponse) =>
+            responseMapping(element),
+        );
+        return mappingArray;
+    };
+    if (page !== '') {
+        return scrapComponent(search_word, page).then(mappingFunction);
+    }
+    return scrapAllComponent(search_word).then(value_list => {
+        return value_list.reduce((acc: ProductListResponse[], cur) => {
+            acc = acc.concat(mappingFunction(cur));
+            return acc;
+        }, []);
+    });
+};
+
+const makejson = (keyword: string, pageNum: string): SiteListRequest => ({
+    filter: {
+        categoryDepth: 0,
+        categorySeq: 0,
+        color: '',
+        condition: {
+            options: { flawedYn: 0, fullPackageYn: 0, limitedEditionYn: 0 },
+            productCondition: -1,
+        },
+        locations: [{ locationCode: '', locationType: -1 }],
+        maxPrice: 0,
+        minPrice: 0,
+        platformType: 1,
+        preferredTrade: 0,
+        sortEndDate: '',
+        sortStartDate: '',
+        state: -1,
+        productSectionType: 0,
+    },
+    isSearchSaved: 0,
+    searchQuantity: 60,
+    searchWord: keyword,
+    sort: { date: 0, order: 0, price: 0 },
+    startIndex: parseInt(pageNum, 10) - 1,
+});

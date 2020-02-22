@@ -23,4 +23,5 @@ export const makeQuery = (keyword: string, pageNum: string): SiteRequest => ({
     apiCode: 'ProductSearch',
     keyword,
     pageNum,
+    pageSize: '60',
 });

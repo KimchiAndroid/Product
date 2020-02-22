@@ -13,6 +13,8 @@ jobs:
     
     steps:
       - name: Checkout a Git repository at at particular version
+        # uses: actions/checkout@v2는 runs-on으로 실행된 빈 container
+        # 에 github action이 실행된 repository 를 clone 하는 명령어 
         uses: actions/checkout@v2
         
       - name: Use a Nodejs version 12.14.0
@@ -21,6 +23,7 @@ jobs:
           node-version: '12.14.0'
           
       - name: Run ESLint
+        # run: 실행할 명령어 |는 여러 명령어를 실행할 때 사용
         run: |
           cd Main_Server
           npm install
