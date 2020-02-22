@@ -12,11 +12,21 @@ class ProductContents extends Component {
             <>
                 <div className="product-detail-container">
                     <div className="productMain">
-                        <ProductImage src={image ? image[0] : ''} className="productDetailImage" />
+                        <ProductImage images={image ? image : ''} className="productDetailImage" />
                         <div className="productMainDetail">
                             <SiteTitle site_code={site_code}></SiteTitle>
-                            <div className="title">{title}</div>
-                            <div className="price">{price} 원</div>
+                            <div className="product-title">{title}</div>
+                            <div className="price-container">
+                                <div className="price-title">가격</div>
+                                <div className="price">{price} 원</div>
+                            </div>
+                            <div className="etcDetail">
+                                {Object.values(tags)
+                                    .filter(tag => tag)
+                                    .map(tag => (
+                                        <HashTag data={tag} />
+                                    ))}
+                            </div>
                             <a
                                 href={origin_url}
                                 className="originUrl"
@@ -24,21 +34,17 @@ class ProductContents extends Component {
                                 rel="noopener noreferrer"
                             >
                                 바로가기
-                        </a>
+                            </a>
                         </div>
                     </div>
-                    <div className="etcDetail">
-                        {Object.values(tags)
-                            .filter(tag => tag)
-                            .map(tag => (
-                                <HashTag data={tag} />
-                            ))}
-                    </div>
+
                     <div
                         className="detail"
                         id="detail"
                         dangerouslySetInnerHTML={{ __html: detail }}
-                    ></div>
+                    >
+                        {/* {detail} */}
+                    </div>
                 </div>
             </>
         );

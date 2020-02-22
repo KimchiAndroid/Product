@@ -10,7 +10,7 @@ export const scrapComponent = async (keyword: string, page: number) => {
 const makeList = async (keyword: string, page: number) => {
     const res = await requestService(keyword, page);
     const product_list: SiteResponse = JSON.parse(res);
-    const product_detail_list: SiteResponseDetail[] = product_list.list;
+    const product_detail_list: SiteResponseDetail[] = product_list.list.filter(input => input.item);
     const mapping_to_form = product_detail_list.map(responseMapping);
 
     return mapping_to_form;
